@@ -1,0 +1,56 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: mberghold-dev
+resources:
+  - configmap-nifi-config.yaml
+  - route-rbac.yaml
+  - service-nifi.yaml
+  - serviceaccount-nifi.yaml
+  - deployment-nifi.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: nifi-parameters
+    envs:
+      - params.env
+
+vars:
+  - name: namespace
+    objref:
+      kind: ConfigMap
+      name: nifi-parameters
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.namespace
+  - name: admin_identity
+    objref:
+      kind: ConfigMap
+      name: nifi-parameters
+      apiVersion: v1
+    fieldref:
+      fieldpath: data.admin_identity
+  - name: admin_password
+    objref:
+      kind: ConfigMap
+      name: nifi-parameters
+      apiVersion: v1
+    fieldref:
+      fieldpath: data.admin_password
+  - name: uid
+    objref:
+      kind: ConfigMap
+      name: nifi-parameters
+      apiVersion: v1
+    fieldref:
+      fieldpath: data.uid
+
+configurations:
+  - params.yaml
+
+images:
+  - name: nifi
+    newName: mberghold/openshift-nifi:1.25.0
+    newTag: 1.25.0
