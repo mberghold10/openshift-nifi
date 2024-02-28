@@ -102,6 +102,8 @@ spec:
           volumeMounts:
             - name: "data"
               mountPath: /opt/nifi/data
+            - name: "logs"
+              mountPath: /opt/nifi/nifi-current/logs
             - name: "bootstrap-conf"
               mountPath: /opt/nifi/nifi-current/conf/bootstrap.conf
               subPath: "bootstrap.conf"
@@ -126,8 +128,48 @@ spec:
             - name: "flow-content"
               mountPath: /opt/nifi/data/flow.xml
               subPath: "flow.xml"
-      securityContext:
-        {}
+        - name: app-log
+          imagePullPolicy: "IfNotPresent"
+          image: busybox
+          args: [tail, -n+1, -F, /var/log/nifi-app.log]
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          volumeMounts:
+            - name: logs
+              mountPath: /var/log
+        - name: bootstrap-log
+          imagePullPolicy: "IfNotPresent"
+          image: busybox
+          args: [tail, -n+1, -F, /var/log/nifi-bootstrap.log]
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          volumeMounts:
+            - name: logs
+              mountPath: /var/log
+        - name: user-log
+          imagePullPolicy: "IfNotPresent"
+          image: busybox
+          args: [tail, -n+1, -F, /var/log/nifi-user.log]
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          volumeMounts:
+            - name: logs
+              mountPath: /var/log
       volumes:
         - name: "bootstrap-conf"
           configMap:
@@ -187,3 +229,12 @@ spec:
         resources:
           requests:
             storage: 1Gi
+    - metadata:
+        name: logs
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        storageClassName: $(storage_class)
+        resources:
+          requests:
+            storage: 5Gi

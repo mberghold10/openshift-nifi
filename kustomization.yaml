@@ -58,6 +58,9 @@ configurations:
   - params.yaml
 
 images:
+  - name: busybox
+    newName: busybox
+    newTag: 1.35.0
   - name: nifi
-    newName: mberghold/openshift-nifi:1.25.0
+    newName: mberghold/openshift-nifi
     newTag: 1.25.0
