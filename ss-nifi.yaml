@@ -1,6 +1,6 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: nifi
   labels:
@@ -177,3 +177,13 @@ spec:
             items:
               - key: "flow.xml"
                 path: "flow.xml"
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - "ReadWriteOnce"
+        storageClassName: $(storage_class)
+        resources:
+          requests:
+            storage: 1Gi

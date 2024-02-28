@@ -7,7 +7,7 @@ resources:
   - route-rbac.yaml
   - service-nifi.yaml
   - serviceaccount-nifi.yaml
-  - deployment-nifi.yaml
+  - ss-nifi.yaml
 
 generatorOptions:
   disableNameSuffixHash: true
@@ -25,6 +25,13 @@ vars:
       apiVersion: v1
     fieldref:
       fieldpath: metadata.namespace
+  - name: storage_class
+    objref:
+      kind: ConfigMap
+      name: nifi-parameters
+      apiVersion: v1
+    fieldref:
+      fieldpath: data.storage_class
   - name: admin_identity
     objref:
       kind: ConfigMap

@@ -1,5 +1,7 @@
 ---
 varReference:
+  - path: spec/volumeClaimTemplates[]/spec/storageClassName
+    kind: StatefulSet
   - path: spec/template/spec/containers/command
     kind: Deployment
   - path: data/authorizers.xml
@@ -10,4 +12,3 @@ varReference:
     kind: ConfigMap
   - path: data/nifi.properties
     kind: ConfigMap
-
