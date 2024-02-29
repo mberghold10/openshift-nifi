@@ -12,20 +12,71 @@ data:
         <userGroupProvider>
             <identifier>file-user-group-provider</identifier>
             <class>org.apache.nifi.authorization.FileUserGroupProvider</class>
-            <property name="Users File">./conf/users.xml</property>
+            <property name="Users File">../data/users.xml</property>
             <property name="Legacy Authorized Users File"></property>
-            <property name="Initial User Identity 0"></property>
         </userGroupProvider>
+
+        <!-- To enable the ldap-user-group-provider remove 2 lines. This is 1 of 2.
+        <userGroupProvider>
+            <identifier>ldap-user-group-provider</identifier>
+            <class>org.apache.nifi.ldap.tenants.LdapUserGroupProvider</class>
+            <property name="Authentication Strategy">START_TLS</property>
+            <property name="Manager DN"></property>
+            <property name="Manager Password"></property>
+            <property name="TLS - Keystore"></property>
+            <property name="TLS - Keystore Password"></property>
+            <property name="TLS - Keystore Type"></property>
+            <property name="TLS - Truststore"></property>
+            <property name="TLS - Truststore Password"></property>
+            <property name="TLS - Truststore Type"></property>
+            <property name="TLS - Client Auth"></property>
+            <property name="TLS - Protocol"></property>
+            <property name="TLS - Shutdown Gracefully"></property>
+            <property name="Referral Strategy">FOLLOW</property>
+            <property name="Connect Timeout">10 secs</property>
+            <property name="Read Timeout">10 secs</property>
+            <property name="Url"></property>
+            <property name="Page Size"></property>
+            <property name="Sync Interval">30 mins</property>
+            <property name="User Search Base"></property>
+            <property name="User Object Class">person</property>
+            <property name="User Search Scope">ONE_LEVEL</property>
+            <property name="User Search Filter"></property>
+            <property name="User Identity Attribute"></property>
+            <property name="User Group Name Attribute"></property>
+            <property name="User Group Name Attribute - Referenced Group Attribute"></property>
+            <property name="Group Search Base"></property>
+            <property name="Group Object Class">group</property>
+            <property name="Group Search Scope">ONE_LEVEL</property>
+            <property name="Group Search Filter"></property>
+            <property name="Group Name Attribute"></property>
+            <property name="Group Member Attribute"></property>
+            <property name="Group Member Attribute - Referenced User Attribute"></property>
+        </userGroupProvider>
+        To enable the ldap-user-group-provider remove 2 lines. This is 2 of 2. -->
+
+        <!-- To enable the composite-user-group-provider remove 2 lines. This is 1 of 2.
+        <userGroupProvider>
+            <identifier>composite-user-group-provider</identifier>
+            <class>org.apache.nifi.authorization.CompositeUserGroupProvider</class>
+            <property name="User Group Provider 1"></property>
+        </userGroupProvider>
+        To enable the composite-user-group-provider remove 2 lines. This is 2 of 2. -->
+
+        <!-- To enable the composite-configurable-user-group-provider remove 2 lines. This is 1 of 2.
+        <userGroupProvider>
+            <identifier>composite-configurable-user-group-provider</identifier>
+            <class>org.apache.nifi.authorization.CompositeConfigurableUserGroupProvider</class>
+            <property name="Configurable User Group Provider">file-user-group-provider</property>
+            <property name="User Group Provider 1"></property>
+        </userGroupProvider>
+        To enable the composite-configurable-user-group-provider remove 2 lines. This is 2 of 2. -->
 
         <accessPolicyProvider>
             <identifier>file-access-policy-provider</identifier>
             <class>org.apache.nifi.authorization.FileAccessPolicyProvider</class>
             <property name="User Group Provider">file-user-group-provider</property>
-            <property name="Authorizations File">./conf/authorizations.xml</property>
-            <property name="Initial Admin Identity"></property>
-            <property name="Legacy Authorized Users File"></property>
-            <property name="Node Identity 1"></property>
-            <property name="Node Group"></property>
+            <property name="Authorizations File">../data/authorizations.xml</property>
         </accessPolicyProvider>
 
         <authorizer>
@@ -35,31 +86,50 @@ data:
         </authorizer>
 
         <authorizer>
-            <identifier>single-user-authorizer</identifier>
-            <class>org.apache.nifi.authorization.single.user.SingleUserAuthorizer</class>
+            <identifier>file-provider</identifier>
+            <class>org.apache.nifi.authorization.FileAuthorizer</class>
+            <property name="Authorizations File">./conf/authorizations.xml</property>
+            <property name="Users File">./conf/users.xml</property>
+            <property name="Initial Admin Identity"></property>
+            <property name="Legacy Authorized Users File"></property>
+            <property name="Node Identity 1"></property>
         </authorizer>
-
     </authorizers>
+
   authorizers.xml: >
     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <authorizers>
         <userGroupProvider>
             <identifier>file-user-group-provider</identifier>
             <class>org.apache.nifi.authorization.FileUserGroupProvider</class>
-            <property name="Users File">./conf/users.xml</property>
+            <property name="Users File">../data/auth-conf/users.xml</property>
             <property name="Legacy Authorized Users File"></property>
-            <property name="Initial User Identity 0"></property>
+            <property name="Initial User Identity 0">CN=nifi-0.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Initial User Identity 1">CN=nifi-1.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Initial User Identity 2">CN=nifi-2.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Initial User Identity 3">CN=nifi-3.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Initial User Identity 4">CN=nifi-4.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Initial User Identity admin">$(admin_identity)</property>
+        </userGroupProvider>
+
+        <userGroupProvider>
+            <identifier>composite-configurable-user-group-provider</identifier>
+            <class>org.apache.nifi.authorization.CompositeConfigurableUserGroupProvider</class>
+            <property name="Configurable User Group Provider">file-user-group-provider</property>
         </userGroupProvider>
 
         <accessPolicyProvider>
             <identifier>file-access-policy-provider</identifier>
             <class>org.apache.nifi.authorization.FileAccessPolicyProvider</class>
-            <property name="User Group Provider">file-user-group-provider</property>
-            <property name="Authorizations File">./conf/authorizations.xml</property>
-            <property name="Initial Admin Identity"></property>
+            <property name="User Group Provider">composite-configurable-user-group-provider</property>
+            <property name="Authorizations File">../data/auth-conf/authorizations.xml</property>
+            <property name="Initial Admin Identity">$(admin_identity)</property>
             <property name="Legacy Authorized Users File"></property>
-            <property name="Node Identity 1"></property>
-            <property name="Node Group"></property>
+            <property name="Node Identity 0">CN=nifi-0.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Node Identity 1">CN=nifi-1.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Node Identity 2">CN=nifi-2.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Node Identity 3">CN=nifi-3.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
+            <property name="Node Identity 4">CN=nifi-4.nifi-headless.$(namespace).svc.cluster.local, OU=NIFI</property>
         </accessPolicyProvider>
 
         <authorizer>
@@ -68,12 +138,8 @@ data:
             <property name="Access Policy Provider">file-access-policy-provider</property>
         </authorizer>
 
-        <authorizer>
-            <identifier>single-user-authorizer</identifier>
-            <class>org.apache.nifi.authorization.single.user.SingleUserAuthorizer</class>
-        </authorizer>
-
     </authorizers>
+
   bootstrap-notification-services.xml: |
     <?xml version="1.0"?>
     <services>
@@ -135,8 +201,8 @@ data:
     java.arg.1=-Dorg.apache.jasper.compiler.disablejsr199=true
 
     # JVM memory settings
-    java.arg.2=-Xms1g
-    java.arg.3=-Xmx1g
+    java.arg.2=-Xms2g
+    java.arg.3=-Xmx2g
 
     # Enable Remote Debugging
     #java.arg.debug=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
@@ -157,20 +223,6 @@ data:
     # Master key in hexadecimal format for encrypted sensitive configuration values
     nifi.bootstrap.sensitive.key=
 
-    # Sensitive Property Provider configuration
-
-    # HashiCorp Vault Sensitive Property Providers
-    #nifi.bootstrap.protection.hashicorp.vault.conf=./conf/bootstrap-hashicorp-vault.conf
-
-    # AWS Sensitive Property Providers
-    #nifi.bootstrap.protection.aws.conf=./conf/bootstrap-aws.conf
-
-    # Azure Key Vault Sensitive Property Providers
-    #nifi.bootstrap.protection.azure.keyvault.conf=./conf/bootstrap-azure.conf
-
-    # GCP KMS Sensitive Property Providers
-    #nifi.bootstrap.protection.gcp.kms.conf=./conf/bootstrap-gcp.conf
-
     # Sets the provider of SecureRandom to /dev/urandom to prevent blocking on VMs
     java.arg.15=-Djava.security.egd=file:/dev/urandom
 
@@ -181,15 +233,6 @@ data:
     # Zookeeper 3.5 now includes an Admin Server that starts on port 8080, since NiFi is already using that port disable by default.
     # Please see https://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_adminserver_config for configuration options.
     java.arg.17=-Dzookeeper.admin.enableServer=false
-
-    # The following options configure a Java Agent to handle native library loading.
-    # It is needed when a custom jar (eg. JDBC driver) has been configured on a component in the flow and this custom jar depends on a native library
-    # and tries to load it by its absolute path (java.lang.System.load(String filename) method call).
-    # Use this Java Agent only if you get "Native Library ... already loaded in another classloader" errors otherwise!
-    #java.arg.18=-javaagent:./lib/aspectj/aspectjweaver-1.9.6.jar
-    #java.arg.19=-Daj.weaving.loadersToSkip=sun.misc.Launcher$AppClassLoader,jdk.internal.loader.ClassLoaders$AppClassLoader,org.eclipse.jetty.webapp.WebAppClassLoader,\
-    #            org.apache.jasper.servlet.JasperLoader,org.jvnet.hk2.internal.DelegatingClassLoader,org.apache.nifi.nar.NarClassLoader
-    # End of Java Agent config for native library loading.
 
     ###
     # Notification Services for notifying interested parties when NiFi is stopped, started, dies
@@ -210,27 +253,27 @@ data:
     # Comma-separated list of identifiers that are present in the notification.services.file; which services should be used to notify when NiFi dies?
     #nifi.dead.notification.services=email-notification
 
-    # The first curator connection issue is logged as ERROR, for example when NiFi cannot connect to one of the Zookeeper nodes.
-    # Additional connection issues are logged as DEBUG until the connection is restored.
-    java.arg.curator.supress.excessive.logs=-Dcurator-log-only-first-connection-issue-as-error-level=true
-
-    # Port used to listen for communications from NiFi. If this property is missing, empty, or 0, a random ephemeral port is used.
-    nifi.bootstrap.listen.port=0
-
   flow.xml: |
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-    <flowController encoding-version="1.3">
+    <flowController encoding-version="1.4">
         <maxTimerDrivenThreadCount>10</maxTimerDrivenThreadCount>
-        <maxEventDrivenThreadCount>5</maxEventDrivenThreadCount>
+        <maxEventDrivenThreadCount>1</maxEventDrivenThreadCount>
         <registries/>
         <rootGroup>
             <id>$(uid)</id>
             <name>Nifi Flow</name>
             <position x="0.0" y="0.0"/>
             <comment/>
+            <flowfileConcurrency>UNBOUNDED</flowfileConcurrency>
+            <flowfileOutboundPolicy>STREAM_WHEN_AVAILABLE</flowfileOutboundPolicy>
+            <defaultFlowFileExpiration>0 sec</defaultFlowFileExpiration>
+            <defaultBackPressureObjectThreshold>10000</defaultBackPressureObjectThreshold>
+            <defaultBackPressureDataSizeThreshold>1 GB</defaultBackPressureDataSizeThreshold>
+            <logFileSuffix/>
         </rootGroup>
         <controllerServices/>
         <reportingTasks/>
+        <parameterProviders/>
     </flowController>
 
   login-identity-providers.xml: |
@@ -262,9 +305,9 @@ data:
 
     # Core Properties #
     nifi.flow.configuration.file=../data/flow.xml.gz
-    #nifi.flow.configuration.json.file=../data/conf/flow.json.gz
+    #nifi.flow.configuration.json.file=../data/flow.json.gz
     nifi.flow.configuration.archive.enabled=true
-    nifi.flow.configuration.archive.dir=..data/archive/
+    nifi.flow.configuration.archive.dir=../data/archive/
     nifi.flow.configuration.archive.max.time=30 days
     nifi.flow.configuration.archive.max.storage=500 MB
     nifi.flow.configuration.archive.max.count=
@@ -279,12 +322,11 @@ data:
 
     nifi.authorizer.configuration.file=./conf/authorizers.xml
     nifi.login.identity.provider.configuration.file=./conf/login-identity-providers.xml
-    nifi.templates.directory=./conf/templates
+    nifi.templates.directory=../data/templates
     nifi.ui.banner.text=
     nifi.ui.autorefresh.interval=30 sec
     nifi.nar.library.directory=./lib
-    #nifi.nar.library.directory.custom=
-    nifi.nar.library.autoload.directory=./extensions
+    nifi.nar.library.autoload.directory=../data/extensions
     nifi.nar.working.directory=./work/nar/
     nifi.documentation.working.directory=./work/docs/components
     nifi.nar.unpack.uber.jar=false
@@ -302,58 +344,49 @@ data:
     # Properties file that provides the ZooKeeper properties to use if <nifi.state.management.embedded.zookeeper.start> is set to true
     nifi.state.management.embedded.zookeeper.properties=./conf/zookeeper.properties
 
-
     # H2 Settings
-    nifi.database.directory=./database_repository
-    #nifi.h2.url.append=;LOCK_TIMEOUT=25000;WRITE_DELAY=0;AUTO_SERVER=FALSE
+    nifi.database.directory=../data/database_repository
+    nifi.h2.url.append=;LOCK_TIMEOUT=25000;WRITE_DELAY=0;AUTO_SERVER=FALSE
+
+    # Repository Encryption properties override individual repository implementation properties
+    nifi.repository.encryption.protocol.version=
+    nifi.repository.encryption.key.id=
+    nifi.repository.encryption.key.provider=
+    nifi.repository.encryption.key.provider.keystore.location=
+    nifi.repository.encryption.key.provider.keystore.password=
 
     # FlowFile Repository
     nifi.flowfile.repository.implementation=org.apache.nifi.controller.repository.WriteAheadFlowFileRepository
     nifi.flowfile.repository.wal.implementation=org.apache.nifi.wali.SequentialAccessWriteAheadLog
-    nifi.flowfile.repository.directory=./flowfile_repository
-    #nifi.flowfile.repository.partitions=256
+    nifi.flowfile.repository.directory=../data/flowfile_repository
     nifi.flowfile.repository.checkpoint.interval=2 mins
     nifi.flowfile.repository.always.sync=false
-    #nifi.flowfile.repository.encryption.key.provider.implementation=
-    #nifi.flowfile.repository.encryption.key.provider.location=
-    #nifi.flowfile.repository.encryption.key.provider.password=
-    #nifi.flowfile.repository.encryption.key.id=
-    #nifi.flowfile.repository.encryption.key=
     nifi.flowfile.repository.retain.orphaned.flowfiles=true
 
     nifi.swap.manager.implementation=org.apache.nifi.controller.FileSystemSwapManager
     nifi.queue.swap.threshold=20000
-    #nifi.swap.in.period=5 sec
-    #nifi.swap.in.threads=1
-    #nifi.swap.out.period=5 sec
-    #nifi.swap.out.threads=4
+    nifi.swap.in.period=5 sec
+    nifi.swap.in.threads=1
+    nifi.swap.out.period=5 sec
+    nifi.swap.out.threads=4
 
     # Content Repository
     nifi.content.repository.implementation=org.apache.nifi.controller.repository.FileSystemRepository
     nifi.content.claim.max.appendable.size=1 MB
-    #nifi.content.claim.max.flow.files=100
-    nifi.content.repository.directory.default=./content_repository
+    nifi.content.claim.max.flow.files=100
+    nifi.content.repository.directory.default=../data/content_repository
     nifi.content.repository.archive.max.retention.period=3 days
-    nifi.content.repository.archive.max.usage.percentage=50%
+    nifi.content.repository.archive.max.usage.percentage=85%
     nifi.content.repository.archive.enabled=true
     nifi.content.repository.always.sync=false
-    nifi.content.viewer.url=../nifi-content-viewer/
-    #nifi.content.repository.encryption.key.provider.implementation=
-    #nifi.content.repository.encryption.key.provider.location=
-    #nifi.content.repository.encryption.key.provider.password=
-    #nifi.content.repository.encryption.key.id=
-    #nifi.content.repository.encryption.key=
+    nifi.content.viewer.url=/nifi-content-viewer/
 
     # Provenance Repository Properties
     nifi.provenance.repository.implementation=org.apache.nifi.provenance.WriteAheadProvenanceRepository
     #nifi.provenance.repository.debug.frequency=1_000_000
-    #nifi.provenance.repository.encryption.key.provider.implementation=
-    #nifi.provenance.repository.encryption.key.provider.location=
-    #nifi.provenance.repository.encryption.key.id=
-    #nifi.provenance.repository.encryption.key=
 
     # Persistent Provenance Repository Properties
-    nifi.provenance.repository.directory.default=./provenance_repository
+    nifi.provenance.repository.directory.default=../data/provenance_repository
     nifi.provenance.repository.max.storage.time=10 days
     nifi.provenance.repository.max.storage.size=8 GB
     nifi.provenance.repository.rollover.time=30 secs
@@ -362,7 +395,7 @@ data:
     nifi.provenance.repository.index.threads=2
     nifi.provenance.repository.compress.on.rollover=true
     nifi.provenance.repository.always.sync=false
-    #nifi.provenance.repository.journal.count=16
+    nifi.provenance.repository.journal.count=16
     # Comma-separated list of fields. Fields that are not indexed will not be searchable. Valid fields are:
     # EventType, FlowFileUUID, Filename, TransitURI, ProcessorID, AlternateIdentifierURI, Relationship, Details
     nifi.provenance.repository.indexed.fields=EventType, FlowFileUUID, Filename, ProcessorID, Relationship
@@ -379,14 +412,21 @@ data:
     # Volatile Provenance Respository Properties
     nifi.provenance.repository.buffer.size=100000
 
-    # Component Status Repository
+    # Component and Node Status History Repository
     nifi.components.status.repository.implementation=org.apache.nifi.controller.status.history.VolatileComponentStatusRepository
+
+    # Volatile Status History Repository Properties
     nifi.components.status.repository.buffer.size=1440
     nifi.components.status.snapshot.frequency=1 min
 
+    # QuestDB Status History Repository Properties
+    nifi.status.repository.questdb.persist.node.days=14
+    nifi.status.repository.questdb.persist.component.days=3
+    nifi.status.repository.questdb.persist.location=../data/status_repository
+
     # Site to Site properties
     nifi.remote.input.host=
-    nifi.remote.input.secure=false
+    nifi.remote.input.secure=true
     nifi.remote.input.socket.port=10000
     nifi.remote.input.http.enabled=true
     nifi.remote.input.http.transaction.ttl=30 sec
@@ -400,35 +440,38 @@ data:
     # We recommend configuring HTTPS instead. The administrators guide provides instructions on how to do this.
 
     nifi.web.war.directory=./lib
-    nifi.web.proxy.host=
-
-    nifi.web.http.port=
-    nifi.web.https.port=9443
 
     nifi.web.http.host=
+    nifi.web.http.port=
     nifi.web.http.network.interface.default=
+
+    #############################################
+
     nifi.web.https.host=
+    nifi.web.https.port=9443
     nifi.web.https.network.interface.default=
+    nifi.web.https.application.protocols=http/1.1
     nifi.web.jetty.working.directory=./work/jetty
     nifi.web.jetty.threads=200
+    nifi.web.max.header.size=16 KB
     # nifi.web.proxy.context.path=
-    nifi.web.max.content.size=
-    #nifi.web.max.requests.per.second=30000
-    #nifi.web.max.access.token.requests.per.second=25
-    #nifi.web.request.timeout=60 secs
-    #nifi.web.request.ip.whitelist=
-    #nifi.web.should.send.server.version=true
-    #nifi.web.request.log.format=%{client}a - %u %t "%r" %s %O "%{Referer}i" "%{User-Agent}i"
+    nifi.web.proxy.host=
+    nifi.web.max.requests.per.second=30000
+    nifi.web.max.access.token.requests.per.second=25
+    nifi.web.request.timeout=60 secs
+    nifi.web.request.ip.whitelist=
+    nifi.web.should.send.server.version=true
+    nifi.web.request.log.format=%{client}a - %u %t "%r" %s %O "%{Referer}i" "%{User-Agent}i"
 
     # security properties #
     nifi.sensitive.props.key=
     nifi.sensitive.props.key.protected=
     nifi.sensitive.props.algorithm=PBEWITHMD5AND256BITAES-CBC-OPENSSL
-    # Maybe is OBE?
     nifi.sensitive.props.provider=BC
     nifi.sensitive.props.additional.keys=
-    #nifi.security.autoreload.enabled=false
-    #nifi.security.autoreload.interval=10 secs
+
+    nifi.security.autoreload.enabled=false
+    nifi.security.autoreload.interval=10 secs
     nifi.security.keystore=
     nifi.security.keystoreType=jks
     nifi.security.keystorePasswd=env:PASS
@@ -436,25 +479,22 @@ data:
     nifi.security.truststore=
     nifi.security.truststoreType=jks
     nifi.security.truststorePasswd=env:PASS
-    # What is this?
-    proxiedEntity=$(admin_identity)
     nifi.security.user.authorizer=managed-authorizer
-    # What is this?
-    nifi.security.needClientAuth=true
-    #nifi.security.allow.anonymous.authentication=false
+    nifi.security.allow.anonymous.authentication=false
     nifi.security.user.login.identity.provider=single-user-provider
-    #nifi.security.user.jws.key.rotation.period=PT1H
+    proxiedEntity=$(admin_identity)
+    nifi.security.needClientAuth=true
     nifi.security.ocsp.responder.url=
     nifi.security.ocsp.responder.certificate=
 
     # OpenId Connect SSO Properties #
     nifi.security.user.oidc.discovery.url=
-    nifi.security.user.oidc.connect.timeout=5s
-    nifi.security.user.oidc.read.timeout=5s
+    nifi.security.user.oidc.connect.timeout=5 secs
+    nifi.security.user.oidc.read.timeout=5 secs
     nifi.security.user.oidc.client.id=
     nifi.security.user.oidc.client.secret=
     nifi.security.user.oidc.preferred.jwsalgorithm=
-    nifi.security.user.oidc.additional.scopes=
+    nifi.security.user.oidc.additional.scopes=offline_access
     nifi.security.user.oidc.claim.identifying.user=
     nifi.security.user.oidc.fallback.claims.identifying.user=
     nifi.security.user.oidc.claim.groups=groups
@@ -467,6 +507,20 @@ data:
     nifi.security.user.knox.cookieName=hadoop-jwt
     nifi.security.user.knox.audiences=
 
+    # SAML Properties #
+    nifi.security.user.saml.idp.metadata.url=
+    nifi.security.user.saml.sp.entity.id=
+    nifi.security.user.saml.identity.attribute.name=
+    nifi.security.user.saml.group.attribute.name=
+    nifi.security.user.saml.request.signing.enabled=false
+    nifi.security.user.saml.want.assertions.signed=true
+    nifi.security.user.saml.signature.algorithm=http://www.w3.org/2001/04/xmldsig-more#rsa-sha256
+    nifi.security.user.saml.authentication.expiration=12 hours
+    nifi.security.user.saml.single.logout.enabled=false
+    nifi.security.user.saml.http.client.truststore.strategy=JDK
+    nifi.security.user.saml.http.client.connect.timeout=30 secs
+    nifi.security.user.saml.http.client.read.timeout=30 secs
+
     # Identity Mapping Properties #
     # These properties allow normalizing user identities such that identities coming from different identity providers
     # (certificates, LDAP, Kerberos) can be treated the same internally in NiFi. The following example demonstrates normalizing
@@ -474,10 +528,13 @@ data:
     #
     nifi.security.identity.mapping.pattern.dn=^CN=(.*?), OU=(.*?)
     nifi.security.identity.mapping.value.dn=$1@$2
+    nifi.security.identity.mapping.transform.dn=NONE
     nifi.security.identity.mapping.pattern.dn2=^uid=(.*?),cn=(.*?),cn=(.*?),dc=(.*?),dc=(.*?)
     nifi.security.identity.mapping.value.dn2=$1
+    nifi.security.identity.mapping.transform.dn2=NONE
     # nifi.security.identity.mapping.pattern.kerb=^(.*?)/instance@(.*?)$
     # nifi.security.identity.mapping.value.kerb=$1@$2
+    # nifi.security.identity.mapping.transform.kerb=UPPER
 
     # Listener Bootstrap properties #
     # This property defines the port used to listen for communications from NiFi Bootstrap. If this property
@@ -490,9 +547,10 @@ data:
     nifi.cluster.protocol.is.secure=true
 
     # cluster node properties (only configure for cluster nodes) #
-    nifi.cluster.is.node=false
+    nifi.cluster.is.node=true
     nifi.cluster.node.address=
     nifi.cluster.node.protocol.port=6007
+    nifi.cluster.node.protocol.threads=10
     nifi.cluster.node.protocol.max.threads=50
     nifi.cluster.node.event.history.size=25
     nifi.cluster.node.connection.timeout=5 sec
@@ -501,6 +559,13 @@ data:
     nifi.cluster.firewall.file=
     nifi.cluster.flow.election.max.wait.time=1 mins
     nifi.cluster.flow.election.max.candidates=$(nodes_number)
+
+    # cluster load balancing properties #
+    nifi.cluster.load.balance.host=
+    nifi.cluster.load.balance.port=6342
+    nifi.cluster.load.balance.connections.per.node=1
+    nifi.cluster.load.balance.max.thread.count=8
+    nifi.cluster.load.balance.comms.timeout=30 sec
 
     # zookeeper properties, used for cluster management #
     nifi.zookeeper.connect.string=
@@ -577,13 +642,35 @@ data:
     ## Results can be obtained by running "nifi.sh diagnostics <filename>" and then inspecting the produced file.
     nifi.performance.tracking.percentage=0
 
+    # NAR Provider Properties #
+    # These properties allow configuring one or more NAR providers. A NAR provider retrieves NARs from an external source
+    # and copies them to the directory specified by nifi.nar.library.autoload.directory.
+    #
+    # Each NAR provider property follows the format:
+    #  nifi.nar.library.provider.<identifier>.<property-name>
+    #
+    # Each NAR provider must have at least one property named "implementation".
+    #
+    # Example HDFS NAR Provider:
+    #   nifi.nar.library.provider.hdfs.implementation=org.apache.nifi.flow.resource.hadoop.HDFSExternalResourceProvider
+    #   nifi.nar.library.provider.hdfs.resources=/path/to/core-site.xml,/path/to/hdfs-site.xml
+    #   nifi.nar.library.provider.hdfs.storage.location=hdfs://hdfs-location
+    #   nifi.nar.library.provider.hdfs.source.directory=/nars
+    #   nifi.nar.library.provider.hdfs.kerberos.principal=nifi@NIFI.COM
+    #   nifi.nar.library.provider.hdfs.kerberos.keytab=/path/to/nifi.keytab
+    #   nifi.nar.library.provider.hdfs.kerberos.password=
+    #
+    # Example NiFi Registry NAR Provider:
+    #   nifi.nar.library.provider.nifi-registry.implementation=org.apache.nifi.registry.extension.NiFiRegistryNarProvider
+    #   nifi.nar.library.provider.nifi-registry.url=http://localhost:18080
+
   state-management.xml: |
     <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <stateManagement>
         <local-provider>
             <id>local-provider</id>
             <class>org.apache.nifi.controller.state.providers.local.WriteAheadLocalStateProvider</class>
-            <property name="Directory">./state/local</property>
+            <property name="Directory">../data/state/local</property>
             <property name="Always Sync">false</property>
             <property name="Partitions">16</property>
             <property name="Checkpoint Interval">2 mins</property>
