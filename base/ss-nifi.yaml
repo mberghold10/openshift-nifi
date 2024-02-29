@@ -492,7 +492,7 @@ spec:
         storageClassName: $(storage_class)
         resources:
           requests:
-            storage: 50Gi
+            storage: 25Gi
     - metadata:
         name: logs
       spec:
