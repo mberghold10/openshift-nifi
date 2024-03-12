@@ -412,7 +412,7 @@ openshift:
   scc:
     enabled: false
   route:
-    enabled: false
+    enabled: true
     #host: www.test.com
     #path: /nifi
 

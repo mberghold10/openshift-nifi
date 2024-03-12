@@ -119,9 +119,6 @@ spec:
             - bash
             - -ce
             - |
-              set -x
-              scripts_dir='/opt/nifi/scripts'
-
               prop_replace () {
                 target_file=${NIFI_HOME}/conf/${3:-nifi.properties}
                 echo "updating ${1} in ${target_file}"
@@ -133,11 +130,6 @@ spec:
               }
 
               mkdir -p ${NIFI_HOME}/config-data/conf
-              mkdir -p ${NIFI_HOME}/../data/flowfile_repository
-              mkdir -p ${NIFI_HOME}/../data/content_repository
-              mkdir -p ${NIFI_HOME}/../data/provenance_repository
-              mkdir -p ${NIFI_HOME}/../data/extensions
-              mkdir -p ${NIFI_HOME}/../data/auth-conf
 
 {{- if .Values.sts.useHostNetwork }}
               FQDN="0.0.0.0"
