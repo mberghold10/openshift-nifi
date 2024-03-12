@@ -65,10 +65,10 @@ spec:
                         - {{ include "apache-nifi.name" . | quote }}
                 topologyKey: "kubernetes.io/hostname"
 {{- end }}
-{{- if and .Values.affinity (and (ne .Values.sts.AntiAffinity "hard") (ne .Values.sts.AntiAffinity "soft")) }}
-      affinity:
-{{ toYaml .Values.affinity | indent 8 }}
-{{- end }}
+#{{- if and .Values.affinity (and (ne .Values.sts.AntiAffinity "hard") (ne .Values.sts.AntiAffinity "soft")) }}
+#      affinity:
+#{{ toYaml .Values.affinity | indent 8 }}
+#{{- end }}
 {{- if .Values.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
 {{- end }}
