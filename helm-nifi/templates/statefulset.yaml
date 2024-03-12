@@ -409,6 +409,7 @@ spec:
               exec:
                 command: ["/bin/sh", "-c", {{ .Values.postStart | quote }}]
 {{- end }}
+{{- if .Values.properties.isNode }}
           readinessProbe:
 {{- if not .Values.sts.startupProbe.enabled  }}
             initialDelaySeconds: 60
@@ -437,7 +438,7 @@ spec:
 #                    jq . $NIFI_BASE_DIR/data/cluster.state
 #                    exit 1
 #                  fi
-#{{- end }}
+{{- end }}
 {{- if .Values.sts.startupProbe.enabled }}
           startupProbe:
             failureThreshold: {{ .Values.sts.startupProbe.failureThreshold }}
