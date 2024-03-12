@@ -61,4 +61,4 @@ serviceAccount:
 ## Use the following varables in order to enable Route and Security Context Constraint creation
 openshift:
   scc:
-    enabled: false
+    enabled: true

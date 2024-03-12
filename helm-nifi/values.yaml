@@ -410,7 +410,7 @@ extraOptions: []
 ## Use the following varables in order to enable Route and Security Context Constraint creation
 openshift:
   scc:
-    enabled: false
+    enabled: true
   route:
     enabled: true
     #host: www.test.com
@@ -435,7 +435,7 @@ ca:
     #name: nifi-ca
   openshift:
     scc:
-      enabled: false
+      enabled: true
 
 # cert-manager support
 # Setting this true will have cert-manager create a private CA for the cluster
