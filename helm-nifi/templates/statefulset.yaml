@@ -139,235 +139,235 @@ spec:
               cat "${NIFI_HOME}/conf/nifi.temp" > "${NIFI_HOME}/conf/nifi.properties"
 
 {{- if .Values.auth.ldap.enabled }}
-          cat "${NIFI_HOME}/conf/authorizers.temp" > "${NIFI_HOME}/conf/authorizers.xml"
-          cat "${NIFI_HOME}/conf/login-identity-providers-ldap.xml" > "${NIFI_HOME}/conf/login-identity-providers.xml"
+              cat "${NIFI_HOME}/conf/authorizers.temp" > "${NIFI_HOME}/conf/authorizers.xml"
+              cat "${NIFI_HOME}/conf/login-identity-providers-ldap.xml" > "${NIFI_HOME}/conf/login-identity-providers.xml"
 {{- else if .Values.auth.oidc.enabled }}
-          prop_replace nifi.security.user.login.identity.provider ''
-          prop_replace nifi.security.user.authorizer managed-authorizer
-          prop_replace nifi.security.user.oidc.discovery.url {{ .Values.auth.oidc.discoveryUrl }}
-          prop_replace nifi.security.user.oidc.client.id {{ .Values.auth.oidc.clientId }}
-          prop_replace nifi.security.user.oidc.client.secret {{ .Values.auth.oidc.clientSecret }}
-          prop_replace nifi.security.user.oidc.claim.identifying.user {{ .Values.auth.oidc.claimIdentifyingUser }}
-          xmlstarlet ed --inplace --delete "//authorizers/authorizer[identifier='single-user-authorizer']" "${NIFI_HOME}/conf/authorizers.xml"
-          xmlstarlet ed --inplace --update "//authorizers/userGroupProvider/property[@name='Users File']" -v './auth-conf/users.xml' "${NIFI_HOME}/conf/authorizers.xml"
-          xmlstarlet ed --inplace --delete "//authorizers/userGroupProvider/property[@name='Initial User Identity 1']" "${NIFI_HOME}/conf/authorizers.xml"
-          xmlstarlet ed --inplace \
-                        --subnode "authorizers/userGroupProvider" --type 'elem' -n 'property' \
-                          --value {{ .Values.auth.oidc.admin | quote }} \
-                        --insert "authorizers/userGroupProvider/property[not(@name)]" --type attr -n name \
-                          --value "Initial User Identity {{ .Values.replicaCount }}" \
-                        "${NIFI_HOME}/conf/authorizers.xml"
-          xmlstarlet ed --inplace --update "//authorizers/accessPolicyProvider/property[@name='Initial Admin Identity']" -v {{ .Values.auth.oidc.admin | quote }} "${NIFI_HOME}/conf/authorizers.xml"
-          xmlstarlet ed --inplace --update "//authorizers/accessPolicyProvider/property[@name='Authorizations File']" -v './auth-conf/authorizations.xml' "${NIFI_HOME}/conf/authorizers.xml"
-          {{- if .Values.properties.isNode }}
-                      xmlstarlet ed --inplace --delete "authorizers/accessPolicyProvider/property[@name='Node Identity 1']" "${NIFI_HOME}/conf/authorizers.xml"
-            {{ range untilStep 0 (int .Values.replicaCount) 1 }}
-                      xmlstarlet ed --inplace \
-                                    --subnode "authorizers/accessPolicyProvider" --type 'elem' -n 'property' \
-                                    --value "CN={{ template "apache-nifi.fullname" $ }}-{{ . }}.{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}, OU=NIFI" \
-                                    --insert "authorizers/accessPolicyProvider/property[not(@name)]" --type attr -n name \
-                                    --value "Node Identity {{ . }}" \
-                                    "${NIFI_HOME}/conf/authorizers.xml"
-                      xmlstarlet ed --inplace \
-                                    --subnode "authorizers/userGroupProvider" --type 'elem' -n 'property' \
-                                    --value "CN={{ template "apache-nifi.fullname" $ }}-{{ . }}.{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}, OU=NIFI" \
-                                    --insert "authorizers/userGroupProvider/property[not(@name)]" --type attr -n name \
-                                    --value "Initial User Identity {{ . }}" \
-                                    "${NIFI_HOME}/conf/authorizers.xml"
-            {{/* range untilStep 0 (int .Values.replicaCount ) 1 */}}{{ end }}
-          {{- end }}
+              prop_replace nifi.security.user.login.identity.provider ''
+              prop_replace nifi.security.user.authorizer managed-authorizer
+              prop_replace nifi.security.user.oidc.discovery.url {{ .Values.auth.oidc.discoveryUrl }}
+              prop_replace nifi.security.user.oidc.client.id {{ .Values.auth.oidc.clientId }}
+              prop_replace nifi.security.user.oidc.client.secret {{ .Values.auth.oidc.clientSecret }}
+              prop_replace nifi.security.user.oidc.claim.identifying.user {{ .Values.auth.oidc.claimIdentifyingUser }}
+              xmlstarlet ed --inplace --delete "//authorizers/authorizer[identifier='single-user-authorizer']" "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace --update "//authorizers/userGroupProvider/property[@name='Users File']" -v './auth-conf/users.xml' "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace --delete "//authorizers/userGroupProvider/property[@name='Initial User Identity 1']" "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace \
+                            --subnode "authorizers/userGroupProvider" --type 'elem' -n 'property' \
+                              --value {{ .Values.auth.oidc.admin | quote }} \
+                            --insert "authorizers/userGroupProvider/property[not(@name)]" --type attr -n name \
+                              --value "Initial User Identity {{ .Values.replicaCount }}" \
+                            "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace --update "//authorizers/accessPolicyProvider/property[@name='Initial Admin Identity']" -v {{ .Values.auth.oidc.admin | quote }} "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace --update "//authorizers/accessPolicyProvider/property[@name='Authorizations File']" -v './auth-conf/authorizations.xml' "${NIFI_HOME}/conf/authorizers.xml"
+              {{- if .Values.properties.isNode }}
+                          xmlstarlet ed --inplace --delete "authorizers/accessPolicyProvider/property[@name='Node Identity 1']" "${NIFI_HOME}/conf/authorizers.xml"
+                {{ range untilStep 0 (int .Values.replicaCount) 1 }}
+                          xmlstarlet ed --inplace \
+                                        --subnode "authorizers/accessPolicyProvider" --type 'elem' -n 'property' \
+                                        --value "CN={{ template "apache-nifi.fullname" $ }}-{{ . }}.{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}, OU=NIFI" \
+                                        --insert "authorizers/accessPolicyProvider/property[not(@name)]" --type attr -n name \
+                                        --value "Node Identity {{ . }}" \
+                                        "${NIFI_HOME}/conf/authorizers.xml"
+                          xmlstarlet ed --inplace \
+                                        --subnode "authorizers/userGroupProvider" --type 'elem' -n 'property' \
+                                        --value "CN={{ template "apache-nifi.fullname" $ }}-{{ . }}.{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}, OU=NIFI" \
+                                        --insert "authorizers/userGroupProvider/property[not(@name)]" --type attr -n name \
+                                        --value "Initial User Identity {{ . }}" \
+                                        "${NIFI_HOME}/conf/authorizers.xml"
+                {{/* range untilStep 0 (int .Values.replicaCount ) 1 */}}{{ end }}
+              {{- end }}
 {{- else if .Values.auth.clientAuth.enabled }}
-          cat "${NIFI_HOME}/conf/authorizers.temp" > "${NIFI_HOME}/conf/authorizers.xml"
-          xmlstarlet ed --inplace --delete "//authorizers/authorizer[identifier='single-user-authorizer']" "${NIFI_HOME}/conf/authorizers.xml"
+              cat "${NIFI_HOME}/conf/authorizers.temp" > "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace --delete "//authorizers/authorizer[identifier='single-user-authorizer']" "${NIFI_HOME}/conf/authorizers.xml"
 {{- else if .Values.auth.singleUser.username }}
-          bin/nifi.sh set-single-user-credentials {{ .Values.auth.singleUser.username }} {{ .Values.auth.singleUser.password }}
+              bin/nifi.sh set-single-user-credentials {{ .Values.auth.singleUser.username }} {{ .Values.auth.singleUser.password }}
 {{- end }}
 
 {{ if .Values.customFlow }}
-          gzip < {{ .Values.customFlow }} > /opt/nifi/data/flow.xml.gz
+              gzip < {{ .Values.customFlow }} > /opt/nifi/data/flow.xml.gz
 {{ else }}
-          if ! test -f /opt/nifi/data/flow.xml.gz && test -f /opt/nifi/data/flow.xml; then
-            gzip /opt/nifi/data/flow.xml
-          fi
+              if ! test -f /opt/nifi/data/flow.xml.gz && test -f /opt/nifi/data/flow.xml; then
+                gzip /opt/nifi/data/flow.xml
+              fi
 {{ end }}
 
-          prop_replace nifi.ui.banner.text $(hostname -s)
-          prop_replace nifi.remote.input.host ${FQDN}
-          prop_replace nifi.cluster.node.address ${FQDN}
-          prop_replace nifi.zookeeper.connect.string ${NIFI_ZOOKEEPER_CONNECT_STRING}
-          prop_replace nifi.web.http.host ${FQDN}
+              prop_replace nifi.ui.banner.text $(hostname -s)
+              prop_replace nifi.remote.input.host ${FQDN}
+              prop_replace nifi.cluster.node.address ${FQDN}
+              prop_replace nifi.zookeeper.connect.string ${NIFI_ZOOKEEPER_CONNECT_STRING}
+              prop_replace nifi.web.http.host ${FQDN}
 
 {{- if .Values.properties.webProxyHost }}
-          # Update nifi.properties for web ui proxy hostname
-          prop_replace nifi.web.proxy.host {{ .Values.properties.webProxyHost }}
+              # Update nifi.properties for web ui proxy hostname
+              prop_replace nifi.web.proxy.host {{ .Values.properties.webProxyHost }}
 {{- else }}
-          prop_replace nifi.web.proxy.host {{ template "apache-nifi.fullname" $ }}.{{ .Release.Namespace }}.svc
+              prop_replace nifi.web.proxy.host {{ template "apache-nifi.fullname" $ }}.{{ .Release.Namespace }}.svc
 {{- end }}
 
 {{- if .Values.certManager.enabled }}
-          xmlstarlet ed --inplace --delete "authorizers/accessPolicyProvider/property[@name='Node Identity 1']" "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace --delete "authorizers/accessPolicyProvider/property[@name='Node Identity 1']" "${NIFI_HOME}/conf/authorizers.xml"
 {{ range untilStep 0 (int .Values.replicaCount) 1 }}
-          xmlstarlet ed --inplace \
-                        --subnode "authorizers/accessPolicyProvider" --type 'elem' -n 'property' \
-                          --value "CN={{ template "apache-nifi.fullname" $ }}-{{ . }}.{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}, OU=NIFI" \
-                        --insert "authorizers/accessPolicyProvider/property[not(@name)]" --type attr -n name \
-                          --value "Node Identity {{ . }}" \
-                        "${NIFI_HOME}/conf/authorizers.xml"
-          xmlstarlet ed --inplace \
-                        --subnode "authorizers/userGroupProvider" --type 'elem' -n 'property' \
-                          --value "CN={{ template "apache-nifi.fullname" $ }}-{{ . }}.{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}, OU=NIFI" \
-                        --insert "authorizers/userGroupProvider/property[not(@name)]" --type attr -n name \
-                          --value "Initial User Identity {{ . }}" \
-                        "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace \
+                            --subnode "authorizers/accessPolicyProvider" --type 'elem' -n 'property' \
+                              --value "CN={{ template "apache-nifi.fullname" $ }}-{{ . }}.{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}, OU=NIFI" \
+                            --insert "authorizers/accessPolicyProvider/property[not(@name)]" --type attr -n name \
+                              --value "Node Identity {{ . }}" \
+                            "${NIFI_HOME}/conf/authorizers.xml"
+              xmlstarlet ed --inplace \
+                            --subnode "authorizers/userGroupProvider" --type 'elem' -n 'property' \
+                              --value "CN={{ template "apache-nifi.fullname" $ }}-{{ . }}.{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}, OU=NIFI" \
+                            --insert "authorizers/userGroupProvider/property[not(@name)]" --type attr -n name \
+                              --value "Initial User Identity {{ . }}" \
+                            "${NIFI_HOME}/conf/authorizers.xml"
 {{/* range untilStep 0 (int .Values.replicaCount ) 1 */}}{{ end }}
 
-          prop_replace nifi.security.keystore "${NIFI_HOME}/tls/keystore.jks"
-          prop_replace nifi.security.keystoreType JKS
-          prop_replace nifi.security.keystorePasswd "{{ .Values.certManager.keystorePasswd }}"
-          prop_replace nifi.security.truststore "${NIFI_HOME}/tls/truststore.jks"
-          prop_replace nifi.security.truststoreType JKS
-          prop_replace nifi.security.truststorePasswd "{{ .Values.certManager.truststorePasswd }}"
+              prop_replace nifi.security.keystore "${NIFI_HOME}/tls/keystore.jks"
+              prop_replace nifi.security.keystoreType JKS
+              prop_replace nifi.security.keystorePasswd "{{ .Values.certManager.keystorePasswd }}"
+              prop_replace nifi.security.truststore "${NIFI_HOME}/tls/truststore.jks"
+              prop_replace nifi.security.truststoreType JKS
+              prop_replace nifi.security.truststorePasswd "{{ .Values.certManager.truststorePasswd }}"
 
-          prop_replace nifi.web.https.host "$(hostname).{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}"
-          prop_replace nifi.cluster.node.address "$(hostname).{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}"
-          prop_replace nifi.web.https.network.interface.default eth0
-          prop_replace nifi.web.https.network.interface.lo lo
-          prop_replace nifi.web.http.host ""
-          prop_replace nifi.web.http.port ""
+              prop_replace nifi.web.https.host "$(hostname).{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}"
+              prop_replace nifi.cluster.node.address "$(hostname).{{ template "apache-nifi.fullname" $ }}-headless.{{ $.Release.Namespace }}.svc.{{ $.Values.certManager.clusterDomain }}"
+              prop_replace nifi.web.https.network.interface.default eth0
+              prop_replace nifi.web.https.network.interface.lo lo
+              prop_replace nifi.web.http.host ""
+              prop_replace nifi.web.http.port ""
 
-          prop_replace nifi.security.autoreload.enabled true
-          prop_replace nifi.security.autoreload.interval "{{ .Values.certManager.refreshSeconds }} secs"
+              prop_replace nifi.security.autoreload.enabled true
+              prop_replace nifi.security.autoreload.interval "{{ .Values.certManager.refreshSeconds }} secs"
 
-          while [ ! -r "${NIFI_HOME}/tls/truststore.jks" ]
-          do
-            echo "${NIFI_HOME}/tls/truststore.jks" is not readable!  Waiting for cert-manager sidecar to populate it.
-            sleep 2
-          done
+              while [ ! -r "${NIFI_HOME}/tls/truststore.jks" ]
+              do
+                echo "${NIFI_HOME}/tls/truststore.jks" is not readable!  Waiting for cert-manager sidecar to populate it.
+                sleep 2
+              done
 
-          while [ ! -r "${NIFI_HOME}/tls/keystore.jks" ]
-          do
-            echo "${NIFI_HOME}/tls/keystore.jks" is not readable!  Waiting for cert-manager sidecar to populate it.
-            sleep 2
-          done
+              while [ ! -r "${NIFI_HOME}/tls/keystore.jks" ]
+              do
+                echo "${NIFI_HOME}/tls/keystore.jks" is not readable!  Waiting for cert-manager sidecar to populate it.
+                sleep 2
+              done
 
 {{- /* if .Values.certManager.enabled */}}{{ else }}
 
-          if [ ! -r "${NIFI_HOME}/conf/nifi-cert.pem" ]
-          then
-            /opt/nifi/nifi-toolkit-current/bin/tls-toolkit.sh standalone \
-              -n '{{.Release.Name}}-nifi-0.{{.Release.Name}}-nifi-headless.{{.Release.Namespace}}.svc.cluster.local' \
-              -C '{{.Values.auth.admin}}' \
-              -o "${NIFI_HOME}/conf/" \
-              -P {{.Values.auth.SSL.truststorePasswd}} \
-              -S {{.Values.auth.SSL.keystorePasswd}} \
-              --nifiPropertiesFile /opt/nifi/nifi-current/conf/nifi.properties
-          fi
+              if [ ! -r "${NIFI_HOME}/conf/nifi-cert.pem" ]
+              then
+                /opt/nifi/nifi-toolkit-current/bin/tls-toolkit.sh standalone \
+                  -n '{{.Release.Name}}-nifi-0.{{.Release.Name}}-nifi-headless.{{.Release.Namespace}}.svc.cluster.local' \
+                  -C '{{.Values.auth.admin}}' \
+                  -o "${NIFI_HOME}/conf/" \
+                  -P {{.Values.auth.SSL.truststorePasswd}} \
+                  -S {{.Values.auth.SSL.keystorePasswd}} \
+                  --nifiPropertiesFile /opt/nifi/nifi-current/conf/nifi.properties
+              fi
 
 {{- /* if .Values.certManager.enabled */}}{{ end }}
 
 {{- if .Values.properties.safetyValve }}
   {{- range $prop, $val := .Values.properties.safetyValve }}
-          prop_replace {{ $prop }} "{{ $val }}" nifi.properties
+              prop_replace {{ $prop }} "{{ $val }}" nifi.properties
   {{- end }}
 {{- end }}
 
 {{- if .Values.properties.sensitiveKeySetFile }}
-          if [ ! -r {{ .Values.properties.sensitiveKeySetFile | quote }} ]
-          then
+              if [ ! -r {{ .Values.properties.sensitiveKeySetFile | quote }} ]
+              then
 {{- if .Values.properties.sensitiveKeyPrior }}
-            prop_replace nifi.sensitive.props.key {{ .Values.properties.sensitiveKeyPrior | quote }}
+                prop_replace nifi.sensitive.props.key {{ .Values.properties.sensitiveKeyPrior | quote }}
 {{- /* if .Values.properties.sensitiveKeyPrior */}}{{ else }}
-            prop_replace nifi.sensitive.props.key ""
+                prop_replace nifi.sensitive.props.key ""
 {{- /* if .Values.properties.sensitiveKeyPrior */}}{{ end }}
-            bin/nifi.sh set-sensitive-properties-key {{ .Values.properties.sensitiveKey | quote }}
-            touch {{ .Values.properties.sensitiveKeySetFile | quote }}
-          fi
+                bin/nifi.sh set-sensitive-properties-key {{ .Values.properties.sensitiveKey | quote }}
+                touch {{ .Values.properties.sensitiveKeySetFile | quote }}
+              fi
 {{- /* if .Values.properties.sensitiveKeySetFile */}}{{ end }}
 
-          for f in "${NIFI_HOME}/conf/authorizers.xml" "${NIFI_HOME}/conf/login-identity-providers.xml" ${NIFI_HOME}/conf/nifi.properties
-          do
-            echo === $f ===
-            cat $f
-          done
-          echo === end of files ===
-
-          function prop () {
-            target_file=${NIFI_HOME}/conf/nifi.properties
-            egrep "^${1}=" ${target_file} | cut -d'=' -f2
-          }
-
-          function offloadNode() {
-              FQDN=$(hostname -f)
-              echo "disconnecting node '$FQDN'"
-              baseUrl=https://${FQDN}:{{ .Values.properties.httpsPort }}
-
-              echo "keystoreType=$(prop nifi.security.keystoreType)" > secure.properties
-              echo "keystore=$(prop nifi.security.keystore)" >> secure.properties
-              echo "keystorePasswd=$(prop nifi.security.keystorePasswd)" >> secure.properties
-              echo "truststoreType=$(prop nifi.security.truststoreType)" >> secure.properties
-              echo "truststore=$(prop nifi.security.truststore)" >> secure.properties
-              echo "truststorePasswd=$(prop nifi.security.truststorePasswd)" >> secure.properties
-              echo "proxiedEntity={{ .Values.auth.admin }}" >> secure.properties
-             
-              secureArgs="-p secure.properties"
-
-              echo baseUrl ${baseUrl}
-              echo "gracefully disconnecting node '$FQDN' from cluster"
-              ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi get-nodes -ot json -u ${baseUrl} ${secureArgs} > nodes.json
-              nnid=$(jq --arg FQDN "$FQDN" '.cluster.nodes[] | select(.address==$FQDN) | .nodeId' nodes.json)
-              echo "disconnecting node ${nnid}"
-              ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi disconnect-node -nnid $nnid -u ${baseUrl} ${secureArgs}
-              echo ""
-              echo "get a connected node"
-              connectedNode=$(jq -r 'first(.cluster.nodes|=sort_by(.address)| .cluster.nodes[] | select(.status=="CONNECTED")) | .address' nodes.json)
-              baseUrl=https://${connectedNode}:{{ .Values.properties.httpsPort }}
-              echo baseUrl ${baseUrl}
-              echo ""
-              echo "wait until node has state 'DISCONNECTED'"
-              while [[ "${node_state}" != "DISCONNECTED" ]]; do
-                  sleep 1
-                  ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi get-nodes -ot json -u ${baseUrl} ${secureArgs} > nodes.json
-                  node_state=$(jq -r --arg FQDN "$FQDN" '.cluster.nodes[] | select(.address==$FQDN) | .status' nodes.json)
-                  echo "state is '${node_state}'"
+              for f in "${NIFI_HOME}/conf/authorizers.xml" "${NIFI_HOME}/conf/login-identity-providers.xml" ${NIFI_HOME}/conf/nifi.properties
+              do
+                echo === $f ===
+                cat $f
               done
-              echo ""
-              echo "node '${nnid}' was disconnected"
-              echo "offloading node"
-              ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi offload-node -nnid $nnid -u ${baseUrl} ${secureArgs}
-              echo ""
-              echo "wait until node has state 'OFFLOADED'"
-              while [[ "${node_state}" != "OFFLOADED" ]]; do
-                  sleep 1
+              echo === end of files ===
+
+              function prop () {
+                target_file=${NIFI_HOME}/conf/nifi.properties
+                egrep "^${1}=" ${target_file} | cut -d'=' -f2
+              }
+
+              function offloadNode() {
+                  FQDN=$(hostname -f)
+                  echo "disconnecting node '$FQDN'"
+                  baseUrl=https://${FQDN}:{{ .Values.properties.httpsPort }}
+
+                  echo "keystoreType=$(prop nifi.security.keystoreType)" > secure.properties
+                  echo "keystore=$(prop nifi.security.keystore)" >> secure.properties
+                  echo "keystorePasswd=$(prop nifi.security.keystorePasswd)" >> secure.properties
+                  echo "truststoreType=$(prop nifi.security.truststoreType)" >> secure.properties
+                  echo "truststore=$(prop nifi.security.truststore)" >> secure.properties
+                  echo "truststorePasswd=$(prop nifi.security.truststorePasswd)" >> secure.properties
+                  echo "proxiedEntity={{ .Values.auth.admin }}" >> secure.properties
+                
+                  secureArgs="-p secure.properties"
+
+                  echo baseUrl ${baseUrl}
+                  echo "gracefully disconnecting node '$FQDN' from cluster"
                   ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi get-nodes -ot json -u ${baseUrl} ${secureArgs} > nodes.json
-                  node_state=$(jq -r --arg FQDN "$FQDN" '.cluster.nodes[] | select(.address==$FQDN) | .status' nodes.json)
-                  echo "state is '${node_state}'"
-              done
-          }
+                  nnid=$(jq --arg FQDN "$FQDN" '.cluster.nodes[] | select(.address==$FQDN) | .nodeId' nodes.json)
+                  echo "disconnecting node ${nnid}"
+                  ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi disconnect-node -nnid $nnid -u ${baseUrl} ${secureArgs}
+                  echo ""
+                  echo "get a connected node"
+                  connectedNode=$(jq -r 'first(.cluster.nodes|=sort_by(.address)| .cluster.nodes[] | select(.status=="CONNECTED")) | .address' nodes.json)
+                  baseUrl=https://${connectedNode}:{{ .Values.properties.httpsPort }}
+                  echo baseUrl ${baseUrl}
+                  echo ""
+                  echo "wait until node has state 'DISCONNECTED'"
+                  while [[ "${node_state}" != "DISCONNECTED" ]]; do
+                      sleep 1
+                      ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi get-nodes -ot json -u ${baseUrl} ${secureArgs} > nodes.json
+                      node_state=$(jq -r --arg FQDN "$FQDN" '.cluster.nodes[] | select(.address==$FQDN) | .status' nodes.json)
+                      echo "state is '${node_state}'"
+                  done
+                  echo ""
+                  echo "node '${nnid}' was disconnected"
+                  echo "offloading node"
+                  ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi offload-node -nnid $nnid -u ${baseUrl} ${secureArgs}
+                  echo ""
+                  echo "wait until node has state 'OFFLOADED'"
+                  while [[ "${node_state}" != "OFFLOADED" ]]; do
+                      sleep 1
+                      ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi get-nodes -ot json -u ${baseUrl} ${secureArgs} > nodes.json
+                      node_state=$(jq -r --arg FQDN "$FQDN" '.cluster.nodes[] | select(.address==$FQDN) | .status' nodes.json)
+                      echo "state is '${node_state}'"
+                  done
+              }
 
-          deleteNode() {
-              echo "deleting node"
-              ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi delete-node -nnid ${nnid} -u ${baseUrl} ${secureArgs}
-              echo "node deleted"
-          }
+              deleteNode() {
+                  echo "deleting node"
+                  ${NIFI_TOOLKIT_HOME}/bin/cli.sh nifi delete-node -nnid ${nnid} -u ${baseUrl} ${secureArgs}
+                  echo "node deleted"
+              }
 
-          executeTrap() {
-             echo Received trapped signal, beginning shutdown...;
+              executeTrap() {
+                echo Received trapped signal, beginning shutdown...;
 {{- if .Values.properties.isNode }}
-             offloadNode;
+                offloadNode;
 {{- end }}
-             ./bin/nifi.sh stop;
+                ./bin/nifi.sh stop;
 {{- if .Values.properties.isNode }}
-             deleteNode;
+                deleteNode;
 {{- end }}
-             exit 0;
-          }
+                exit 0;
+              }
 
-          trap executeTrap TERM HUP INT;
-          trap ":" EXIT
+              trap executeTrap TERM HUP INT;
+              trap ":" EXIT
 
-          exec bin/nifi.sh run & nifi_pid="$!"
-          echo NiFi running with PID ${nifi_pid}.
-          wait ${nifi_pid}
+              exec bin/nifi.sh run & nifi_pid="$!"
+              echo NiFi running with PID ${nifi_pid}.
+              wait ${nifi_pid}
 
           resources:
 {{ toYaml .Values.resources | indent 12 }}
