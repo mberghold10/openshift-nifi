@@ -358,41 +358,41 @@ terminationGracePeriodSeconds: 30
 ## Extra environment variables that will be pass onto deployment pods
 env: []
 
-envVars:
- - name: NODE_TLS_REJECT_UNAUTHORIZED
-   value: "0"
- - name: volante_Crypto_signEnabled
-   value: "false"
- - name: volante_Crypto_cryptoEnabled
-   value: "false"
- - name: volante_Crypto_keyFolder
-   value: /etc/portal-tmp
- - name: volante_Crypto_signingPublicKey
-   value: Hyperion.crt
- - name: volante_Crypto_signingPrivateKey
-   value: Hyperion.pem
- - name: volante_Crypto_signingPrivateKeyPassphrase
-   value: pass
- - name: volante_Crypto_cryptoPublicKeyUUID
-   value: 3d66222c-ebc0-4493-854d-d37600f235a5
- - name: volante_Crypto_cryptoPrivateKeyUUID
-   value: 45432855-a822-4848-a24e-15474c7686d1
- - name: volante_CdsPlugin_cdsBroker
-   value: "AwsS3"
- - name: volante_Manager_inboundObjStore
-   value: "portal02"
- - name: volante_Manager_outboundObjStore
-   value: "portal01"
- - name: CI_VERSION
-   value: "{{ requiredEnv "CI_VERSION" }}"
- - name: S3_access_key
-   value: sldkfslkdfjslkdjflskdjflskjdfsdljf
-- name: S3_secret_key
-   value: sldkfslkdfjslkdjflskdjflskjdfsdljf/sdfsdfsdf
-- name: S3_region
-   value: us-east-2
-- name: DITUurl
-   value: www.ditu.com
+#envVars:
+#  - name: NODE_TLS_REJECT_UNAUTHORIZED
+#    value: "0"
+#  - name: volante_Crypto_signEnabled
+#    value: "false"
+#  - name: volante_Crypto_cryptoEnabled
+#    value: "false"
+#  - name: volante_Crypto_keyFolder
+#    value: /etc/portal-tmp
+#  - name: volante_Crypto_signingPublicKey
+#    value: Hyperion.crt
+#  - name: volante_Crypto_signingPrivateKey
+#    value: Hyperion.pem
+#  - name: volante_Crypto_signingPrivateKeyPassphrase
+#    value: pass
+#  - name: volante_Crypto_cryptoPublicKeyUUID
+#    value: 3d66222c-ebc0-4493-854d-d37600f235a5
+#  - name: volante_Crypto_cryptoPrivateKeyUUID
+#    value: 45432855-a822-4848-a24e-15474c7686d1
+#  - name: volante_CdsPlugin_cdsBroker
+#    value: "AwsS3"
+#  - name: volante_Manager_inboundObjStore
+#    value: "portal02"
+#  - name: volante_Manager_outboundObjStore
+#    value: "portal01"
+#  - name: CI_VERSION
+#    value: "{{ requiredEnv "CI_VERSION" }}"
+#  - name: S3_access_key
+#    value: sldkfslkdfjslkdjflskdjflskjdfsdljf
+#  - name: S3_secret_key
+#    value: sldkfslkdfjslkdjflskdjflskjdfsdljf/sdfsdfsdf
+#  - name: S3_region
+#    value: us-east-2
+#  - name: DITUurl
+#    value: www.ditu.com
 
 ## Extra environment variables from secrets and config maps
 envFrom: []
