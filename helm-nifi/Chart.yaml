@@ -20,7 +20,7 @@ appVersion: 1.25.0
 
 dependencies:
   - name: ca
-    version: ^1.0.1
+    version: ^1.0.0
     condition: ca.enabled
   - name: zookeeper
     version: ^9.2.7
