@@ -1,0 +1,11 @@
+apiVersion: v2
+name: ca
+description: A Helm chart for deploying a ca server to generate self signed certificates using Nifi Toolkit.
+
+type: application
+
+# Chart version, starting at 1.0.0 and increasing to follow Semantic Versioning (https://semver.org/)
+version: 1.0.0
+
+# The appVersion refers to the version of Nifi-Toolkit that is being deployed with our image.
+appVersion: 1.16.2

@@ -1,0 +1,56 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "ca.fullname" . }}
+  labels:
+    app: {{ template "ca.name" . }}-ca
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Release.Name | quote }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "ca.name" . }}-ca
+      chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+      release: {{ .Release.Name | quote }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "ca.name" . }}-ca
+        release: {{ .Release.Name | quote }}
+    spec:
+      serviceAccountName: {{ include "ca.serviceAccountName" . }}
+      containers:
+        - name: ca
+          imagePullPolicy: {{ .Values.image.pullPolicy | quote }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command:
+            - sh
+            - -c
+            - |
+              if [ -f config.json ]; then
+                OPTIONS="--configJson config.json --useConfigJson"
+              fi
+              exec ${NIFI_TOOLKIT_HOME}/bin/tls-toolkit.sh server -c "{{ template "ca.fullname" . }}" -t {{ .Values.token }} -p {{ .Values.app_port }} ${OPTIONS}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          ports:
+            - containerPort: {{ .Values.app_port }}
+          livenessProbe:
+            initialDelaySeconds: 90
+            periodSeconds: 60
+            tcpSocket:
+              port: {{ .Values.app_port }}
+          volumeMounts:
+            - mountPath: /ca
+              name: nifi-ca
+              subPath: ca
+          workingDir: /ca
+      terminationGracePeriodSeconds: 0
+      securityContext:
+        {}
+      volumes:
+        - name: nifi-ca
+          persistentVolumeClaim:
+            claimName: nifi-ca
