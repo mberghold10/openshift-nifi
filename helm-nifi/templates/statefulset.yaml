@@ -437,7 +437,7 @@ spec:
 #                    jq . $NIFI_BASE_DIR/data/cluster.state
 #                    exit 1
 #                  fi
-{{- end }}
+#{{- end }}
 {{- if .Values.sts.startupProbe.enabled }}
           startupProbe:
             failureThreshold: {{ .Values.sts.startupProbe.failureThreshold }}
