@@ -1,0 +1,45 @@
+---
+replicaCount: 1
+storageClass: "gp2"
+adminIdentity: "admin"
+adminPassword: "1tacsat21tacsat2"
+certificateStorePassword: "trustmaster"
+namespace: "mberghold-dev"
+#uid=3abd9dad-79c2-49a5-acac-3a4434600d44
+#oidc_discovery_url=
+#oidc_client_id=
+#oidc_client_secret=
+#oidc_claim_identifying_user=
+#ldap_host=
+#ldap_searchBase=
+#ldap_admin=
+#ldap_pass=
+#ldap_searchFilter=
+#ldap_userIdentityAttribute=
+#ldap_userIdentityMapping=
+
+images:
+  nifi:
+    repository: "mberghold/openshift-nifi"
+    pullPolicy: "IfNotPresent"
+    tag: "1.25.0"
+  nifi-toolkit:
+    repository: "mberghold/openshift-nifi-toolkit"
+    pullPolicy: "IfNotPresent"
+    tag: "1.25.0"
+  zookeeper:
+    repository: "bitnami/zookeeper"
+    pullPolicy: "IfNotPresent"
+    tag: "3.7.1"
+  busybox:
+    repository: "busybox"
+    pullPolicy: "IfNotPresent"
+    tag: "1.35.0"
+  alpine:
+    repository: "alpine"
+    pullPolicy: "IfNotPresent"
+    tag: "3.16.0"
+  oc-client:
+    repository: "quay.io/openshift/origin-cli"
+    pullPolicy: "IfNotPresent"
+    tag: "4.10.0"

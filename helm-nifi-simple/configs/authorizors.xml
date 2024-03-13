@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<authorizers>
+    <userGroupProvider>
+        <identifier>file-user-group-provider</identifier>
+        <class>org.apache.nifi.authorization.FileUserGroupProvider</class>
+        <property name="Users File">../data/auth-conf/users.xml</property>
+        <property name="Legacy Authorized Users File"></property>
+        <property name="Initial User Identity 0">CN=nifi-0.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Initial User Identity 1">CN=nifi-1.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Initial User Identity 2">CN=nifi-2.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Initial User Identity 3">CN=nifi-3.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Initial User Identity 4">CN=nifi-4.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Initial User Identity admin">{{ .Values.adminIdentity }}</property>
+    </userGroupProvider>
+
+    <userGroupProvider>
+        <identifier>composite-configurable-user-group-provider</identifier>
+        <class>org.apache.nifi.authorization.CompositeConfigurableUserGroupProvider</class>
+        <property name="Configurable User Group Provider">file-user-group-provider</property>
+    </userGroupProvider>
+
+    <accessPolicyProvider>
+        <identifier>file-access-policy-provider</identifier>
+        <class>org.apache.nifi.authorization.FileAccessPolicyProvider</class>
+        <property name="User Group Provider">composite-configurable-user-group-provider</property>
+        <property name="Authorizations File">../data/auth-conf/authorizations.xml</property>
+        <property name="Initial Admin Identity">{{ .Values.adminIdentity }}</property>
+        <property name="Legacy Authorized Users File"></property>
+        <property name="Node Identity 0">CN=nifi-0.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Node Identity 1">CN=nifi-1.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Node Identity 2">CN=nifi-2.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Node Identity 3">CN=nifi-3.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+        <property name="Node Identity 4">CN=nifi-4.nifi-headless.{{ .Values.namespace }}.svc.cluster.local, OU=NIFI</property>
+    </accessPolicyProvider>
+
+    <authorizer>
+        <identifier>managed-authorizer</identifier>
+        <class>org.apache.nifi.authorization.StandardManagedAuthorizer</class>
+        <property name="Access Policy Provider">file-access-policy-provider</property>
+    </authorizer>
+
+</authorizers>

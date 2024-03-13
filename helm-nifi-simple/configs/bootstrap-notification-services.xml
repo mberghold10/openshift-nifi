@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<services>
+
+<!--
+    <service>
+        <id>email-notification</id>
+        <class>org.apache.nifi.bootstrap.notification.email.EmailNotificationService</class>
+        <property name="SMTP Hostname"></property>
+        <property name="SMTP Port"></property>
+        <property name="SMTP Username"></property>
+        <property name="SMTP Password"></property>
+        <property name="SMTP TLS"></property>
+        <property name="From"></property>
+        <property name="To"></property>
+    </service>
+-->
+<!--
+    <service>
+        <id>http-notification</id>
+        <class>org.apache.nifi.bootstrap.notification.http.HttpNotificationService</class>
+        <property name="URL"></property>
+    </service>
+-->
+</services>
