@@ -32,7 +32,7 @@ spec:
         {}
       containers:
         - name: zookeeper
-          image: zookeeper
+          image: "{{ .Values.images.zookeeper.repository }}:{{ .Values.images.zookeeper.tag }}"
           imagePullPolicy: "IfNotPresent"
           # yamllint disable rule:line-length
           command:

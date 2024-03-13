@@ -34,7 +34,7 @@ spec:
       initContainers:
         - name: zookeeper
           imagePullPolicy: "IfNotPresent"
-          image: busybox
+          image: "{{ .Values.images.busybox.repository }}:{{ .Values.images.busybox.tag }}"
           command:
             - sh
             - -c
@@ -46,7 +46,7 @@ spec:
               done
         - name: cert-request
           imagePullPolicy: "IfNotPresent"
-          image: nifi-toolkit
+          image: "{{ .Values.images.nifiToolkit.repository }}:{{ .Values.images.nifiToolkit.tag }}"
           resources:
             requests:
               cpu: 1
@@ -126,7 +126,7 @@ spec:
             - name: "config-data"
               mountPath: /data/config-data
         - name: reencrypt-route
-          image: oc-client
+          image: "{{ .Values.images.ocClient.repository }}:{{ .Values.images.ocClient.tag }}"
           imagePullPolicy: 'IfNotPresent'
           env:
             - name: SERVICE_NAME
@@ -172,7 +172,7 @@ spec:
       containers:
         - name: server
           imagePullPolicy: "Always"
-          image: nifi
+          image: "{{ .Values.images.nifi.repository }}:{{ .Values.images.nifi.tag }}"
           command:
             - bash
             - -ce
@@ -377,7 +377,7 @@ spec:
               subPath: "flow.xml"
         - name: app-log
           imagePullPolicy: "IfNotPresent"
-          image: busybox
+          image: "{{ .Values.images.busybox.repository }}:{{ .Values.images.busybox.tag }}"
           args: [tail, -n+1, -F, /var/log/nifi-app.log]
           resources:
             limits:
@@ -391,7 +391,7 @@ spec:
               mountPath: /var/log
         - name: bootstrap-log
           imagePullPolicy: "IfNotPresent"
-          image: busybox
+          image: "{{ .Values.images.busybox.repository }}:{{ .Values.images.busybox.tag }}"
           args: [tail, -n+1, -F, /var/log/nifi-bootstrap.log]
           resources:
             limits:
@@ -405,7 +405,7 @@ spec:
               mountPath: /var/log
         - name: user-log
           imagePullPolicy: "IfNotPresent"
-          image: busybox
+          image: "{{ .Values.images.busybox.repository }}:{{ .Values.images.busybox.tag }}"
           args: [tail, -n+1, -F, /var/log/nifi-user.log]
           resources:
             limits:

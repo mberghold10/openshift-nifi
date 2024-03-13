@@ -23,7 +23,7 @@ images:
     repository: "mberghold/openshift-nifi"
     pullPolicy: "IfNotPresent"
     tag: "1.25.0"
-  nifi-toolkit:
+  nifiToolkit:
     repository: "mberghold/openshift-nifi-toolkit"
     pullPolicy: "IfNotPresent"
     tag: "1.25.0"
@@ -39,7 +39,7 @@ images:
     repository: "alpine"
     pullPolicy: "IfNotPresent"
     tag: "3.16.0"
-  oc-client:
+  ocClient:
     repository: "quay.io/openshift/origin-cli"
     pullPolicy: "IfNotPresent"
     tag: "4.10.0"

@@ -19,7 +19,7 @@ spec:
       containers:
         - name: ca
           imagePullPolicy: "IfNotPresent"
-          image: nifi-toolkit
+          image: "{{ .Values.images.nifiToolkit.repository }}:{{ .Values.images.nifiToolkit.tag }}""
           command:
             - sh
             - -c
