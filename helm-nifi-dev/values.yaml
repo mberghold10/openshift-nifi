@@ -1,0 +1,48 @@
+---
+replicaCount: 3
+storageClass: "thin-cli"
+adminIdentity: "admin"
+adminPassword: "1tacsat21tacsat2"
+certificateStorePassword: "trustmaster"
+namespace: "hyperion-nifi"
+#uid=3abd9dad-79c2-49a5-acac-3a4434600d44
+#oidc_discovery_url=
+#oidc_client_id=
+#oidc_client_secret=
+#oidc_claim_identifying_user=
+#ldap_host=
+#ldap_searchBase=
+#ldap_admin=
+#ldap_pass=
+#ldap_searchFilter=
+#ldap_userIdentityAttribute=
+#ldap_userIdentityMapping=
+
+serviceMeshEnabled: true
+
+images:
+  nifi:
+    repository: "artifactory.hyp/gui-docker-dev-local/openshift-nifi"
+    pullPolicy: "IfNotPresent"
+    tag: "1.25.0"
+  nifiToolkit:
+    repository: "artifactory.hyp/gui-docker-dev-local/openshift-nifi-toolkit"
+    pullPolicy: "IfNotPresent"
+    # Change tag to 1.16.2 at some point to reflect the actual toolkit version
+    tag: "1.25.0"
+  zookeeper:
+    repository: "artifactory.hyp/gui-docker-dev-local/bitnami/zookeeper"
+    pullPolicy: "IfNotPresent"
+    tag: "3.7.1"
+  busybox:
+    repository: "artifactory.hyp/gui-docker-dev-local/busybox"
+    pullPolicy: "IfNotPresent"
+    tag: "1.35.0"
+  alpine:
+    repository: "artifactory.hyp/gui-docker-dev-local/alpine"
+    pullPolicy: "IfNotPresent"
+    tag: "3.16.0"
+  ocClient:
+    repository: "artifactory.hyp/gui-docker-dev-local/openshift/origin-cli"
+    pullPolicy: "IfNotPresent"
+    tag: "4.10.0"

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flowController encoding-version="1.4">
+    <maxTimerDrivenThreadCount>10</maxTimerDrivenThreadCount>
+    <maxEventDrivenThreadCount>1</maxEventDrivenThreadCount>
+    <registries/>
+    <rootGroup>
+        <id>$(uid)</id>
+        <name>Nifi Flow</name>
+        <position x="0.0" y="0.0"/>
+        <comment/>
+        <flowfileConcurrency>UNBOUNDED</flowfileConcurrency>
+        <flowfileOutboundPolicy>STREAM_WHEN_AVAILABLE</flowfileOutboundPolicy>
+        <defaultFlowFileExpiration>0 sec</defaultFlowFileExpiration>
+        <defaultBackPressureObjectThreshold>10000</defaultBackPressureObjectThreshold>
+        <defaultBackPressureDataSizeThreshold>1 GB</defaultBackPressureDataSizeThreshold>
+        <logFileSuffix/>
+    </rootGroup>
+    <controllerServices/>
+    <reportingTasks/>
+    <parameterProviders/>
+</flowController>

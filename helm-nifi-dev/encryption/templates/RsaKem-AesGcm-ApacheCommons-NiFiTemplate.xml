@@ -1,0 +1,1665 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template encoding-version="1.3">
+    <description></description>
+    <groupId>21448837-0170-1000-6e04-60ca473404e7</groupId>
+    <name>RSA-KEM+AES-GCM</name>
+    <snippet>
+        <connections>
+            <id>18082f38-87b4-310a-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+            <bends>
+                <x>775.4906969204224</x>
+                <y>40.0</y>
+            </bends>
+            <bends>
+                <x>737.8967027797974</x>
+                <y>0.0</y>
+            </bends>
+            <bends>
+                <x>703.4906969204224</x>
+                <y>40.0</y>
+            </bends>
+            <destination>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>f91c2f50-63fa-3ae8-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>failure</selectedRelationships>
+            <source>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>f91c2f50-63fa-3ae8-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>56d89bcd-5f45-3527-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+            <bends>
+                <x>1583.4906969204224</x>
+                <y>228.6436767578125</y>
+            </bends>
+            <bends>
+                <x>1647.4906969204224</x>
+                <y>284.6436767578125</y>
+            </bends>
+            <destination>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>5ed286f0-7c47-3335-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>failure</selectedRelationships>
+            <source>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>5ed286f0-7c47-3335-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>acdce6ed-7404-39bf-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+            <destination>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>5ed286f0-7c47-3335-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>success</selectedRelationships>
+            <source>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>f91c2f50-63fa-3ae8-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>c049cf7e-8166-30d5-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+            <destination>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>375044dc-4b98-381a-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>success</selectedRelationships>
+            <source>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>966c408f-473d-38cf-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>cd241cb7-1274-3668-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+            <destination>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>f91c2f50-63fa-3ae8-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>success</selectedRelationships>
+            <source>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>ec223515-2ec8-3da2-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>d16673ca-f870-3b0c-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+            <bends>
+                <x>767.4906969204224</x>
+                <y>504.0</y>
+            </bends>
+            <bends>
+                <x>739.3526353969849</x>
+                <y>541.384765625</y>
+            </bends>
+            <bends>
+                <x>703.4906969204224</x>
+                <y>504.0</y>
+            </bends>
+            <destination>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>375044dc-4b98-381a-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>failure</selectedRelationships>
+            <source>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>375044dc-4b98-381a-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>da80de5f-a14a-3d43-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <backPressureDataSizeThreshold>1 GB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>10000</backPressureObjectThreshold>
+            <destination>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>5ed286f0-7c47-3335-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <loadBalanceCompression>DO_NOT_COMPRESS</loadBalanceCompression>
+            <loadBalancePartitionAttribute></loadBalancePartitionAttribute>
+            <loadBalanceStatus>LOAD_BALANCE_NOT_CONFIGURED</loadBalanceStatus>
+            <loadBalanceStrategy>DO_NOT_LOAD_BALANCE</loadBalanceStrategy>
+            <name></name>
+            <selectedRelationships>success</selectedRelationships>
+            <source>
+                <groupId>b912261a-f0e1-30ef-0000-000000000000</groupId>
+                <id>375044dc-4b98-381a-0000-000000000000</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <processors>
+            <id>375044dc-4b98-381a-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <position>
+                <x>560.0</x>
+                <y>353.6561602067759</y>
+            </position>
+            <bundle>
+                <artifact>nifi-groovyx-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.14.0</version>
+            </bundle>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                    <entry>
+                        <key>groovyx-script-file</key>
+                        <value>
+                            <name>groovyx-script-file</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-script-body</key>
+                        <value>
+                            <name>groovyx-script-body</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-failure-strategy</key>
+                        <value>
+                            <name>groovyx-failure-strategy</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-additional-classpath</key>
+                        <value>
+                            <name>groovyx-additional-classpath</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>fips</key>
+                        <value>
+                            <name>fips</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>keysFolder</key>
+                        <value>
+                            <name>keysFolder</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>keyUUID</key>
+                        <value>
+                            <name>keyUUID</name>
+                        </value>
+                    </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>0 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>groovyx-script-file</key>
+                    </entry>
+                    <entry>
+                        <key>groovyx-script-body</key>
+                        <value>import org.apache.nifi.processors.groovyx.flow.GroovySessionFile;
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.security.spec.AlgorithmParameterSpec;
+import java.security.GeneralSecurityException;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import java.nio.charset.StandardCharsets;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
+import java.nio.file.Paths;
+import java.io.FileReader;
+import java.io.ByteArrayOutputStream;
+import java.util.Arrays;
+
+import org.apache.commons.crypto.cipher.CryptoCipher;
+import org.apache.commons.crypto.cipher.CryptoCipherFactory;
+import org.apache.commons.crypto.cipher.CryptoCipherFactory.CipherProvider;
+
+import org.bouncycastle.crypto.CipherParameters;
+import org.bouncycastle.crypto.DerivationFunction;
+import org.bouncycastle.crypto.params.KDFParameters;
+import org.bouncycastle.crypto.params.HKDFParameters;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.crypto.params.RSAKeyParameters;
+import org.bouncycastle.crypto.params.RSAPrivateCrtKeyParameters;
+import org.bouncycastle.crypto.util.PublicKeyFactory;
+import org.bouncycastle.crypto.generators.HKDFBytesGenerator;
+import org.bouncycastle.crypto.digests.SHA256Digest;
+import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo;
+import org.bouncycastle.util.BigIntegers;
+import org.bouncycastle.openssl.PEMParser;
+
+/**
+ * The RSA Key Encapsulation Mechanism (RSA-KEM) from ISO 18033-2.
+ */
+public class RSAKeyEncapsulation
+{
+    private static final BigInteger ZERO = BigInteger.valueOf(0);
+    private static final BigInteger ONE = BigInteger.valueOf(1);
+
+    private DerivationFunction kdf;
+    private SecureRandom rnd;
+    private RSAKeyParameters key;
+    private byte[] additionalInfo;
+    private byte[] salt;
+
+    /**
+     * Set up the RSA-KEM.
+     *
+     * @param kdf the key derivation function to be used.
+     * @param rnd the random source for the session key.
+     */
+    public RSAKeyEncapsulation(
+        DerivationFunction kdf,
+        SecureRandom rnd)
+    {
+        this.kdf = kdf;
+        this.rnd = rnd;
+    }
+
+    /**
+     * Initialise the RSA-KEM.
+     *
+     * @param key the recipient's public (for encryption) or private (for decryption) key.
+     */
+    public void init(CipherParameters key, byte[] salt, byte[] additionalInfo)
+        throws IllegalArgumentException
+    {
+        if (!(key instanceof RSAKeyParameters))
+        {
+            throw new IllegalArgumentException("RSA key required");
+        }
+
+        this.key = (RSAKeyParameters)key;
+		this.salt = salt;
+		this.additionalInfo = additionalInfo;
+    }
+
+    /**
+     * Generate and encapsulate a random session key.
+     *
+     * @param out    the output buffer for the encapsulated key.
+     * @param outOff the offset for the output buffer.
+     * @param keyLen the length of the random session key.
+     * @return the random session key.
+     */
+    public byte[] encrypt(byte[] out, int outOff, int keyLen)
+        throws IllegalArgumentException
+    {
+        if (key.isPrivate())
+        {
+            throw new IllegalArgumentException("Public key required for encryption");
+        }
+
+        BigInteger n = key.getModulus();
+        BigInteger e = key.getExponent();
+
+        // Generate the ephemeral random and encode it    
+        BigInteger r = BigIntegers.createRandomInRange(ZERO, n.subtract(ONE), rnd);
+
+        // Encrypt the random and encode it     
+        BigInteger c = r.modPow(e, n);
+        byte[] C = BigIntegers.asUnsignedByteArray(((n.bitLength() + 7) / 8).intValue(), c);
+        System.arraycopy(C, 0, out, outOff, C.length);
+
+        return generateKey(n, r, keyLen);
+    }
+
+    /**
+     * Generate and encapsulate a random session key.
+     *
+     * @param out    the output buffer for the encapsulated key.
+     * @param keyLen the length of the random session key.
+     * @return the random session key.
+     */
+    public byte[] encrypt(byte[] out, int keyLen)
+    {
+        return encrypt(out, 0, keyLen);
+    }
+
+    /**
+     * Decrypt an encapsulated session key.
+     *
+     * @param in     the input buffer for the encapsulated key.
+     * @param inOff  the offset for the input buffer.
+     * @param inLen  the length of the encapsulated key.
+     * @param keyLen the length of the session key.
+     * @return the session key.
+     */
+    public byte[] decrypt(byte[] inByte, int inOff, int inLen, int keyLen)
+        throws IllegalArgumentException
+    {
+        if (!key.isPrivate())
+        {
+            throw new IllegalArgumentException("Private key required for decryption");
+        }
+
+        BigInteger n = key.getModulus();
+        BigInteger d = key.getExponent();
+
+        // Decode the input
+        byte[] C = new byte[inLen];
+        System.arraycopy(inByte, inOff, C, 0, C.length);
+        BigInteger c = new BigInteger(1, C);
+
+        // Decrypt the ephemeral random and encode it
+        BigInteger r = c.modPow(d, n);
+
+        return generateKey(n, r, keyLen);
+    }
+
+    /**
+     * Decrypt an encapsulated session key.
+     *
+     * @param in     the input buffer for the encapsulated key.
+     * @param keyLen the length of the session key.
+     * @return the session key.
+     */
+    public byte[] decrypt(byte[] inByte, int keyLen)
+    {
+        return decrypt(inByte, 0, inByte.length, keyLen);
+    }
+
+    protected byte[] generateKey(BigInteger n, BigInteger r, int keyLen)
+    {
+        byte[] R = BigIntegers.asUnsignedByteArray(((n.bitLength() + 7) / 8).intValue(), r);
+
+        // Initialise the KDF
+        kdf.init(new HKDFParameters(R, salt, additionalInfo));
+
+        // Generate the secret key
+        byte[] K = new byte[keyLen];
+        kdf.generateBytes(K, 0, K.length);
+
+        return K;
+    }
+}
+
+public class BytesManipulation
+{
+	private static final char[] HEX_ARRAY = "0123456789abcdef".toCharArray();
+	
+	public static byte[] hexToBytes(String hex)
+	{
+		int len = hex.length();
+		byte[] bytes = new byte[len / 2];
+		for (int i = 0; i &lt; len; i += 2) {
+			bytes[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) &lt;&lt; 4)
+								 + Character.digit(hex.charAt(i+1), 16));
+		}
+		return bytes;
+	}
+
+	public static String bytesToHex(byte[] ba)
+	{
+		byte[] hexChars = new byte[ba.length * 2];
+		for (int j = 0; j &lt; ba.length; j++) {
+			int v = ba[j] &amp; 0xFF;
+			hexChars[j * 2] = HEX_ARRAY[v &gt;&gt;&gt; 4];
+			hexChars[j * 2 + 1] = HEX_ARRAY[v &amp; 0x0F];
+		}
+		return new String(hexChars, StandardCharsets.UTF_8);
+	}
+
+	public static String byteGuidToHex(byte[] ba)
+	{
+		String hexGuid = bytesToHex(ba);
+		if(hexGuid.length() == 32)
+		{
+			return hexGuid.substring(0,8) + "-" + hexGuid.substring(8,12) + "-" + hexGuid.substring(12,16) + "-" + hexGuid.substring(16,20) + "-" + hexGuid.substring(20,32)
+		}
+		else
+		{
+			return ""
+		}
+	}
+}
+
+private CryptoCipher generateInitialValuesAndSetUpCipher(OutputStream outStream, String keyUUID, String keyFolder, byte[] additionalInfo, boolean fipsMode)
+{
+	try
+	{
+		SecureRandom random = new SecureRandom();
+		byte[] keyID = BytesManipulation.hexToBytes(keyUUID.replace("-", ""));
+		byte[] aesInitializationVector = new byte[12];
+		random.nextBytes(aesInitializationVector);
+		
+		//load the public key
+		FileReader reader = new FileReader(Paths.get(keyFolder, keyUUID + "_public.pem").toString());
+		PEMParser parser = new PEMParser(reader);
+		RSAKeyParameters publicKey = (RSAKeyParameters)PublicKeyFactory.createKey((SubjectPublicKeyInfo)parser.readObject());
+		parser.close();
+		reader.close();
+		
+		//derive the AES key from the key material input
+		HKDFBytesGenerator hkdfBytesGenerator = new HKDFBytesGenerator(new SHA256Digest());
+		RSAKeyEncapsulation rsaKE = new RSAKeyEncapsulation(hkdfBytesGenerator, new SecureRandom());
+		rsaKE.init(publicKey, keyID, additionalInfo);
+		byte[] encryptedAesKeyInputMaterial = new byte[512];
+		byte[] aesKey = rsaKE.encrypt(encryptedAesKeyInputMaterial, 32);
+		
+		//write parameters to output stream
+		outStream.write(keyID);
+		outStream.write(encryptedAesKeyInputMaterial);
+		outStream.write(aesInitializationVector);
+		
+		//prepare the cipher to encrypt
+		Properties cipherProperties = new Properties();
+		if(fipsMode)
+			cipherProperties.setProperty(CryptoCipherFactory.CLASSES_KEY, CipherProvider.JCE.getClassName());
+		else
+			cipherProperties.setProperty(CryptoCipherFactory.CLASSES_KEY, CipherProvider.OPENSSL.getClassName());
+		//Creates a CryptoCipher instance with the transformation and properties.
+		AlgorithmParameterSpec parameterSpec = new GCMParameterSpec(128, aesInitializationVector);
+		CryptoCipher aesCipher = CryptoCipherFactory.getCryptoCipher("AES/GCM/NoPadding", cipherProperties);
+		aesCipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(aesKey, 0, aesKey.length, "AES"), parameterSpec);
+		return aesCipher;
+	}
+	catch(IOException | GeneralSecurityException e)
+	{
+		log.error("Caught error in generateInitialValuesAndSetUpCipher: " + e.getMessage());
+		return null;
+	}
+}
+
+
+GroovySessionFile flowFile = session.get()
+if(!flowFile) return
+
+File folder = new File(keysFolder.value)
+if(!folder.exists())
+{
+	throw new IOException("Key folder not found")
+	session.transfer(flowFile, REL_FAILURE)
+	return
+}
+
+try
+{
+	boolean fipsMode = false;
+	for(def property in context.getProperties())
+	{
+		if(property.getKey().getName().toLowerCase() == "fips")
+		{
+			if(property.getValue().toLowerCase() == "true")
+				fipsMode = true;
+			break;
+		}
+	}
+
+	final long MAX_AESGCM_SIZE = 68719476704;
+	final int AES_GCM_TAG_SIZE = 16;
+	byte[] additionalInfo = (flowFile.filename + ".enc").getBytes('UTF8');
+	boolean isValidDecrypt = false;
+
+	//encrypt the incoming flow file
+	flowFile = session.write(flowFile, {plainTextStream, cipherTextStream -&gt;
+		final ReadableByteChannel plainTextChannel = Channels.newChannel(plainTextStream);
+		final WritableByteChannel cipherTextChannel = Channels.newChannel(cipherTextStream);
+		final int bufferSize = 32*1024;
+		ByteBuffer plainTextBuffer = ByteBuffer.allocateDirect((int)Math.min(bufferSize, flowFile.getSize()));
+		ByteBuffer cipherTextBuffer = ByteBuffer.allocateDirect(bufferSize + (fipsMode ? AES_GCM_TAG_SIZE : 0));
+		long plainTextPosition = 0;
+		int numBytesRead = 0;
+		long totalBytesRead = 0;
+		
+		while(plainTextPosition &lt; flowFile.getSize())
+		{
+			CryptoCipher cipher = generateInitialValuesAndSetUpCipher(cipherTextStream, keyUUID.value, keysFolder.value, additionalInfo, fipsMode);
+			
+			if(!cipher) {
+				log.error("Failed to configure cipher.  Routing to failure.");
+				throw new IOException("Failed to configure cipher.  Routing to failure.");
+			}
+
+			while(totalBytesRead &lt; MAX_AESGCM_SIZE &amp;&amp; plainTextPosition &lt; flowFile.getSize())
+			{
+				numBytesRead = plainTextChannel.read(plainTextBuffer);
+				plainTextBuffer.flip();
+				totalBytesRead += numBytesRead;
+				plainTextPosition += numBytesRead;
+				cipher.update(plainTextBuffer, cipherTextBuffer);
+				cipherTextBuffer.flip();
+				cipherTextChannel.write(cipherTextBuffer);
+				plainTextBuffer.clear();
+				cipherTextBuffer.clear();
+				
+				//was the buffer size reset last pass?
+				if(plainTextBuffer.capacity() &lt; bufferSize)
+					plainTextBuffer = ByteBuffer.allocateDirect(bufferSize);
+				
+				//are we within one round of the end of MAX_AESGCM_SIZE?
+				if(totalBytesRead + plainTextBuffer.capacity() &gt; MAX_AESGCM_SIZE)
+					plainTextBuffer = ByteBuffer.allocateDirect((int)(MAX_AESGCM_SIZE - totalBytesRead));
+				
+				//are we within one round of the end of the file?
+				if(flowFile.getSize() - plainTextPosition &lt; plainTextBuffer.capacity())
+					plainTextBuffer = ByteBuffer.allocateDirect((int)(flowFile.getSize() - plainTextPosition));
+			}
+			
+			//write gcm tag
+			cipher.doFinal(ByteBuffer.allocateDirect(0), cipherTextBuffer);
+			cipherTextBuffer.flip();
+			cipherTextChannel.write(cipherTextBuffer);
+			totalBytesRead = 0;
+		}
+		
+		plainTextChannel.close();
+		cipherTextChannel.close();
+	} as StreamCallback)
+
+	flowFile = session.putAttribute(flowFile, "filename", flowFile.filename + ".enc");
+	session.transfer(flowFile, REL_SUCCESS);
+}
+catch (Exception e)
+{
+	log.error("Exception in encrypt: " + e.getMessage());
+	session.transfer(flowFile, REL_FAILURE);
+}</value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-failure-strategy</key>
+                        <value>rollback</value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-additional-classpath</key>
+                        <value>/var/libs/AESGCM/bcpkix-jdk15on-169.jar;/var/libs/AESGCM/bcprov-jdk15on-169.jar;/var/libs/AESGCM/commons-crypto-1.1.0.jar</value>
+                    </entry>
+                    <entry>
+                        <key>fips</key>
+                        <value>false</value>
+                    </entry>
+                    <entry>
+                        <key>keysFolder</key>
+                        <value>/var/data/keys/public</value>
+                    </entry>
+                    <entry>
+                        <key>keyUUID</key>
+                        <value>3122f0a5-9daa-4cc6-8c79-2af712fd5857</value>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <executionNodeRestricted>false</executionNodeRestricted>
+            <name>Encrypt</name>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>failure</name>
+            </relationships>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>success</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <type>org.apache.nifi.processors.groovyx.ExecuteGroovyScript</type>
+        </processors>
+        <processors>
+            <id>5ed286f0-7c47-3335-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <position>
+                <x>1152.0</x>
+                <y>209.6561602067759</y>
+            </position>
+            <bundle>
+                <artifact>nifi-standard-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.14.0</version>
+            </bundle>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                    <entry>
+                        <key>Directory</key>
+                        <value>
+                            <name>Directory</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Conflict Resolution Strategy</key>
+                        <value>
+                            <name>Conflict Resolution Strategy</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Create Missing Directories</key>
+                        <value>
+                            <name>Create Missing Directories</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Count</key>
+                        <value>
+                            <name>Maximum File Count</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Last Modified Time</key>
+                        <value>
+                            <name>Last Modified Time</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Permissions</key>
+                        <value>
+                            <name>Permissions</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Owner</key>
+                        <value>
+                            <name>Owner</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Group</key>
+                        <value>
+                            <name>Group</name>
+                        </value>
+                    </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Directory</key>
+                        <value>/var/data/output</value>
+                    </entry>
+                    <entry>
+                        <key>Conflict Resolution Strategy</key>
+                        <value>fail</value>
+                    </entry>
+                    <entry>
+                        <key>Create Missing Directories</key>
+                        <value>true</value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Count</key>
+                    </entry>
+                    <entry>
+                        <key>Last Modified Time</key>
+                    </entry>
+                    <entry>
+                        <key>Permissions</key>
+                    </entry>
+                    <entry>
+                        <key>Owner</key>
+                    </entry>
+                    <entry>
+                        <key>Group</key>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <executionNodeRestricted>false</executionNodeRestricted>
+            <name>PutFile</name>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>failure</name>
+            </relationships>
+            <relationships>
+                <autoTerminate>true</autoTerminate>
+                <name>success</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <type>org.apache.nifi.processors.standard.PutFile</type>
+        </processors>
+        <processors>
+            <id>966c408f-473d-38cf-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <position>
+                <x>0.0</x>
+                <y>353.6561602067759</y>
+            </position>
+            <bundle>
+                <artifact>nifi-standard-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.14.0</version>
+            </bundle>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                    <entry>
+                        <key>Input Directory</key>
+                        <value>
+                            <name>Input Directory</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>File Filter</key>
+                        <value>
+                            <name>File Filter</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Path Filter</key>
+                        <value>
+                            <name>Path Filter</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Batch Size</key>
+                        <value>
+                            <name>Batch Size</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Keep Source File</key>
+                        <value>
+                            <name>Keep Source File</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Recurse Subdirectories</key>
+                        <value>
+                            <name>Recurse Subdirectories</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Polling Interval</key>
+                        <value>
+                            <name>Polling Interval</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Ignore Hidden Files</key>
+                        <value>
+                            <name>Ignore Hidden Files</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Minimum File Age</key>
+                        <value>
+                            <name>Minimum File Age</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Age</key>
+                        <value>
+                            <name>Maximum File Age</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Minimum File Size</key>
+                        <value>
+                            <name>Minimum File Size</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Size</key>
+                        <value>
+                            <name>Maximum File Size</name>
+                        </value>
+                    </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Input Directory</key>
+                        <value>/var/data/input/encrypt</value>
+                    </entry>
+                    <entry>
+                        <key>File Filter</key>
+                        <value>[^\.].*</value>
+                    </entry>
+                    <entry>
+                        <key>Path Filter</key>
+                    </entry>
+                    <entry>
+                        <key>Batch Size</key>
+                        <value>10</value>
+                    </entry>
+                    <entry>
+                        <key>Keep Source File</key>
+                        <value>false</value>
+                    </entry>
+                    <entry>
+                        <key>Recurse Subdirectories</key>
+                        <value>true</value>
+                    </entry>
+                    <entry>
+                        <key>Polling Interval</key>
+                        <value>0 sec</value>
+                    </entry>
+                    <entry>
+                        <key>Ignore Hidden Files</key>
+                        <value>true</value>
+                    </entry>
+                    <entry>
+                        <key>Minimum File Age</key>
+                        <value>0 sec</value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Age</key>
+                    </entry>
+                    <entry>
+                        <key>Minimum File Size</key>
+                        <value>0 B</value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Size</key>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <executionNodeRestricted>false</executionNodeRestricted>
+            <name>GetFile</name>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>success</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <type>org.apache.nifi.processors.standard.GetFile</type>
+        </processors>
+        <processors>
+            <id>ec223515-2ec8-3da2-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <position>
+                <x>0.0</x>
+                <y>65.6561602067759</y>
+            </position>
+            <bundle>
+                <artifact>nifi-standard-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.14.0</version>
+            </bundle>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                    <entry>
+                        <key>Input Directory</key>
+                        <value>
+                            <name>Input Directory</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>File Filter</key>
+                        <value>
+                            <name>File Filter</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Path Filter</key>
+                        <value>
+                            <name>Path Filter</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Batch Size</key>
+                        <value>
+                            <name>Batch Size</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Keep Source File</key>
+                        <value>
+                            <name>Keep Source File</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Recurse Subdirectories</key>
+                        <value>
+                            <name>Recurse Subdirectories</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Polling Interval</key>
+                        <value>
+                            <name>Polling Interval</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Ignore Hidden Files</key>
+                        <value>
+                            <name>Ignore Hidden Files</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Minimum File Age</key>
+                        <value>
+                            <name>Minimum File Age</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Age</key>
+                        <value>
+                            <name>Maximum File Age</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Minimum File Size</key>
+                        <value>
+                            <name>Minimum File Size</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Size</key>
+                        <value>
+                            <name>Maximum File Size</name>
+                        </value>
+                    </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Input Directory</key>
+                        <value>/var/data/input/decrypt</value>
+                    </entry>
+                    <entry>
+                        <key>File Filter</key>
+                        <value>[^\.].*</value>
+                    </entry>
+                    <entry>
+                        <key>Path Filter</key>
+                    </entry>
+                    <entry>
+                        <key>Batch Size</key>
+                        <value>10</value>
+                    </entry>
+                    <entry>
+                        <key>Keep Source File</key>
+                        <value>false</value>
+                    </entry>
+                    <entry>
+                        <key>Recurse Subdirectories</key>
+                        <value>true</value>
+                    </entry>
+                    <entry>
+                        <key>Polling Interval</key>
+                        <value>0 sec</value>
+                    </entry>
+                    <entry>
+                        <key>Ignore Hidden Files</key>
+                        <value>true</value>
+                    </entry>
+                    <entry>
+                        <key>Minimum File Age</key>
+                        <value>0 sec</value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Age</key>
+                    </entry>
+                    <entry>
+                        <key>Minimum File Size</key>
+                        <value>0 B</value>
+                    </entry>
+                    <entry>
+                        <key>Maximum File Size</key>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <executionNodeRestricted>false</executionNodeRestricted>
+            <name>GetFile</name>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>success</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <type>org.apache.nifi.processors.standard.GetFile</type>
+        </processors>
+        <processors>
+            <id>f91c2f50-63fa-3ae8-0000-000000000000</id>
+            <parentGroupId>b912261a-f0e1-30ef-0000-000000000000</parentGroupId>
+            <position>
+                <x>560.0</x>
+                <y>65.6561602067759</y>
+            </position>
+            <bundle>
+                <artifact>nifi-groovyx-nar</artifact>
+                <group>org.apache.nifi</group>
+                <version>1.14.0</version>
+            </bundle>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <descriptors>
+                    <entry>
+                        <key>groovyx-script-file</key>
+                        <value>
+                            <name>groovyx-script-file</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-script-body</key>
+                        <value>
+                            <name>groovyx-script-body</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-failure-strategy</key>
+                        <value>
+                            <name>groovyx-failure-strategy</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-additional-classpath</key>
+                        <value>
+                            <name>groovyx-additional-classpath</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>fips</key>
+                        <value>
+                            <name>fips</name>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>keysFolder</key>
+                        <value>
+                            <name>keysFolder</name>
+                        </value>
+                    </entry>
+                </descriptors>
+                <executionNode>ALL</executionNode>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>0 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>groovyx-script-file</key>
+                    </entry>
+                    <entry>
+                        <key>groovyx-script-body</key>
+                        <value>import org.apache.nifi.processors.groovyx.flow.GroovySessionFile
+
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.security.spec.AlgorithmParameterSpec;
+import java.security.GeneralSecurityException;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import java.nio.charset.StandardCharsets;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
+import java.nio.file.Paths;
+import java.io.FileReader;
+import java.io.ByteArrayOutputStream;
+import java.util.Arrays;
+
+import org.apache.commons.crypto.cipher.CryptoCipher;
+import org.apache.commons.crypto.cipher.CryptoCipherFactory;
+import org.apache.commons.crypto.cipher.CryptoCipherFactory.CipherProvider;
+
+import org.bouncycastle.crypto.CipherParameters;
+import org.bouncycastle.crypto.DerivationFunction;
+import org.bouncycastle.crypto.params.KDFParameters;
+import org.bouncycastle.crypto.params.HKDFParameters;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.crypto.params.RSAKeyParameters;
+import org.bouncycastle.crypto.params.RSAPrivateCrtKeyParameters;
+import org.bouncycastle.crypto.util.PrivateKeyFactory;
+import org.bouncycastle.crypto.generators.HKDFBytesGenerator;
+import org.bouncycastle.crypto.digests.SHA256Digest;
+import org.bouncycastle.asn1.pkcs.PrivateKeyInfo;
+import org.bouncycastle.util.BigIntegers;
+import org.bouncycastle.openssl.PEMParser;
+import org.bouncycastle.openssl.PEMKeyPair;
+
+/**
+ * The RSA Key Encapsulation Mechanism (RSA-KEM) from ISO 18033-2.
+ */
+public class RSAKeyEncapsulation
+{
+    private static final BigInteger ZERO = BigInteger.valueOf(0);
+    private static final BigInteger ONE = BigInteger.valueOf(1);
+
+    private DerivationFunction kdf;
+    private SecureRandom rnd;
+    private RSAKeyParameters key;
+    private byte[] additionalInfo;
+    private byte[] salt;
+
+    /**
+     * Set up the RSA-KEM.
+     *
+     * @param kdf the key derivation function to be used.
+     * @param rnd the random source for the session key.
+     */
+    public RSAKeyEncapsulation(
+        DerivationFunction kdf,
+        SecureRandom rnd)
+    {
+        this.kdf = kdf;
+        this.rnd = rnd;
+    }
+
+    /**
+     * Initialise the RSA-KEM.
+     *
+     * @param key the recipient's public (for encryption) or private (for decryption) key.
+     */
+    public void init(CipherParameters key, byte[] salt, byte[] additionalInfo)
+        throws IllegalArgumentException
+    {
+        if (!(key instanceof RSAKeyParameters))
+        {
+            throw new IllegalArgumentException("RSA key required");
+        }
+
+        this.key = (RSAKeyParameters)key;
+		this.salt = salt;
+		this.additionalInfo = additionalInfo;
+    }
+
+    /**
+     * Generate and encapsulate a random session key.
+     *
+     * @param out    the output buffer for the encapsulated key.
+     * @param outOff the offset for the output buffer.
+     * @param keyLen the length of the random session key.
+     * @return the random session key.
+     */
+    public byte[] encrypt(byte[] out, int outOff, int keyLen)
+        throws IllegalArgumentException
+    {
+        if (key.isPrivate())
+        {
+            throw new IllegalArgumentException("Public key required for encryption");
+        }
+
+        BigInteger n = key.getModulus();
+        BigInteger e = key.getExponent();
+
+        // Generate the ephemeral random and encode it    
+        BigInteger r = BigIntegers.createRandomInRange(ZERO, n.subtract(ONE), rnd);
+
+        // Encrypt the random and encode it     
+        BigInteger c = r.modPow(e, n);
+        byte[] C = BigIntegers.asUnsignedByteArray(((n.bitLength() + 7) / 8).intValue(), c);
+        System.arraycopy(C, 0, out, outOff, C.length);
+
+        return generateKey(n, r, keyLen);
+    }
+
+    /**
+     * Generate and encapsulate a random session key.
+     *
+     * @param out    the output buffer for the encapsulated key.
+     * @param keyLen the length of the random session key.
+     * @return the random session key.
+     */
+    public byte[] encrypt(byte[] out, int keyLen)
+    {
+        return encrypt(out, 0, keyLen);
+    }
+
+    /**
+     * Decrypt an encapsulated session key.
+     *
+     * @param in     the input buffer for the encapsulated key.
+     * @param inOff  the offset for the input buffer.
+     * @param inLen  the length of the encapsulated key.
+     * @param keyLen the length of the session key.
+     * @return the session key.
+     */
+    public byte[] decrypt(byte[] inByte, int inOff, int inLen, int keyLen)
+        throws IllegalArgumentException
+    {
+        if (!key.isPrivate())
+        {
+            throw new IllegalArgumentException("Private key required for decryption");
+        }
+
+        BigInteger n = key.getModulus();
+        BigInteger d = key.getExponent();
+
+        // Decode the input
+        byte[] C = new byte[inLen];
+        System.arraycopy(inByte, inOff, C, 0, C.length);
+        BigInteger c = new BigInteger(1, C);
+
+        // Decrypt the ephemeral random and encode it
+        BigInteger r = c.modPow(d, n);
+
+        return generateKey(n, r, keyLen);
+    }
+
+    /**
+     * Decrypt an encapsulated session key.
+     *
+     * @param in     the input buffer for the encapsulated key.
+     * @param keyLen the length of the session key.
+     * @return the session key.
+     */
+    public byte[] decrypt(byte[] inByte, int keyLen)
+    {
+        return decrypt(inByte, 0, inByte.length, keyLen);
+    }
+
+    protected byte[] generateKey(BigInteger n, BigInteger r, int keyLen)
+    {
+        byte[] R = BigIntegers.asUnsignedByteArray(((n.bitLength() + 7) / 8).intValue(), r);
+
+        // Initialise the KDF
+        kdf.init(new HKDFParameters(R, salt, additionalInfo));
+
+        // Generate the secret key
+        byte[] K = new byte[keyLen];
+        kdf.generateBytes(K, 0, K.length);
+
+        return K;
+    }
+}
+
+public class BytesManipulation
+{
+	private static final char[] HEX_ARRAY = "0123456789abcdef".toCharArray();
+	
+	public static byte[] hexToBytes(String hex)
+	{
+		int len = hex.length();
+		byte[] bytes = new byte[len / 2];
+		for (int i = 0; i &lt; len; i += 2) {
+			bytes[i / 2] = (byte) ((Character.digit(hex.charAt(i), 16) &lt;&lt; 4)
+								 + Character.digit(hex.charAt(i+1), 16));
+		}
+		return bytes;
+	}
+
+	public static String bytesToHex(byte[] ba)
+	{
+		byte[] hexChars = new byte[ba.length * 2];
+		for (int j = 0; j &lt; ba.length; j++) {
+			int v = ba[j] &amp; 0xFF;
+			hexChars[j * 2] = HEX_ARRAY[v &gt;&gt;&gt; 4];
+			hexChars[j * 2 + 1] = HEX_ARRAY[v &amp; 0x0F];
+		}
+		return new String(hexChars, StandardCharsets.UTF_8);
+	}
+
+	public static String byteGuidToHex(byte[] ba)
+	{
+		String hexGuid = bytesToHex(ba);
+		if(hexGuid.length() == 32)
+		{
+			return hexGuid.substring(0,8) + "-" + hexGuid.substring(8,12) + "-" + hexGuid.substring(12,16) + "-" + hexGuid.substring(16,20) + "-" + hexGuid.substring(20,32)
+		}
+		else
+		{
+			return ""
+		}
+	}
+}
+
+
+public class CipherPair
+{
+	public CryptoCipher cipher;
+	public CryptoCipher verifyCipher;
+
+	public CipherPair(CryptoCipher cipher, CryptoCipher verifyCipher)
+	{
+		this.cipher = cipher;
+		this.verifyCipher = verifyCipher;
+	}
+}
+
+private CipherPair parseInitialValuesFromStreamAndSetUpCipher(InputStream inStream, byte[] additionalInfo, String keyFolder, boolean fipsMode)
+{
+	try
+	{
+		byte[] keyID = new byte[16];
+		byte[] encryptedAESKeyInputMaterial = new byte[512];
+		byte[] aesInitializationVector = new byte[12];
+		
+		
+		//parse key ID, encrypted key material, and AES IV
+		int bytesRead = inStream.read(keyID);
+		if(bytesRead != 16)
+		{
+			throw new IOException("Could not read key ID from flow file");
+		}
+		bytesRead = inStream.read(encryptedAESKeyInputMaterial);
+		if(bytesRead != 512)
+		{
+			throw new IOException("Could not read key material from flow file");
+		}
+		bytesRead = inStream.read(aesInitializationVector);
+		if(bytesRead != 12)
+		{
+			throw new IOException("Could not read initialization vector from flow file");
+		}
+		
+		//load the private key
+		String keyFilePath = Paths.get(keyFolder, BytesManipulation.byteGuidToHex(keyID) + "_private.pem").toString();
+		FileReader reader = new FileReader(keyFilePath);
+		PEMParser parser = new PEMParser(reader);
+		RSAPrivateCrtKeyParameters privateKey;
+		Object pemObject = parser.readObject();
+		if(pemObject instanceof PrivateKeyInfo)
+			privateKey = (RSAPrivateCrtKeyParameters)PrivateKeyFactory.createKey((PrivateKeyInfo)pemObject);
+		else if(pemObject instanceof PEMKeyPair)
+			privateKey = (RSAPrivateCrtKeyParameters)PrivateKeyFactory.createKey(((PEMKeyPair)pemObject));
+		else
+			privateKey = null;
+		parser.close();
+		reader.close();
+		
+		if(privateKey == null)
+			throw new IOException("Could not read PEM private key.  Unknown format.");
+		
+		//derive the AES key from the key material input
+		HKDFBytesGenerator hkdfBytesGenerator = new HKDFBytesGenerator(new SHA256Digest());
+		RSAKeyEncapsulation rsaKE = new RSAKeyEncapsulation(hkdfBytesGenerator, new SecureRandom());
+		rsaKE.init(privateKey, keyID, additionalInfo);
+		byte[] aesKey = rsaKE.decrypt(encryptedAESKeyInputMaterial, 32);
+		
+		//prepare the cipher to decrypt
+		Properties cipherProperties = new Properties();
+		if(fipsMode)
+			cipherProperties.setProperty(CryptoCipherFactory.CLASSES_KEY, CipherProvider.JCE.getClassName());
+		else
+			cipherProperties.setProperty(CryptoCipherFactory.CLASSES_KEY, CipherProvider.OPENSSL.getClassName());
+		AlgorithmParameterSpec parameterSpec = new GCMParameterSpec(128, aesInitializationVector);
+		SecretKeySpec keySpec = new SecretKeySpec(aesKey, 0, aesKey.length, "AES");
+		CryptoCipher aesCipher = CryptoCipherFactory.getCryptoCipher("AES/GCM/NoPadding", cipherProperties);
+		aesCipher.init(Cipher.ENCRYPT_MODE, keySpec, parameterSpec);
+		
+		//prepare the validation cipher
+		CryptoCipher verifyCipher = CryptoCipherFactory.getCryptoCipher("AES/GCM/NoPadding", cipherProperties);
+		verifyCipher.init(Cipher.ENCRYPT_MODE, keySpec, parameterSpec);
+		return new CipherPair(aesCipher, verifyCipher);
+	}
+	catch(IOException | GeneralSecurityException e)
+	{
+		log.error("Caught error in parseInitialValuesFromStreamAndSetUpCipher: " + e.getMessage());
+		e.printStackTrace();
+		return null;
+	}
+}
+
+
+GroovySessionFile flowFile = session.get()
+if(!flowFile) return
+
+File folder = new File(keysFolder.value)
+if(!folder.exists())
+{
+	throw new IOException("Key folder not found")
+	session.transfer(flowFile, REL_FAILURE)
+	return
+}
+
+try
+{
+	boolean fipsMode = false;
+	for(def property in context.getProperties())
+	{
+		if(property.getKey().getName().toLowerCase() == "fips")
+		{
+			if(property.getValue().toLowerCase() == "true")
+				fipsMode = true;
+			break;
+		}
+	}
+
+	final long MAX_AESGCM_SIZE = 68719476704;
+	final int AES_GCM_TAG_SIZE = 16;
+	byte[] additionalInfo = flowFile.filename.getBytes('UTF8');
+	boolean isValidDecrypt = false;
+
+
+	//decrypt the incoming flow file
+	flowFile = session.write(flowFile, {cipherTextStream, plainTextStream -&gt;
+		//decrypt the incoming flow file
+		final ReadableByteChannel cipherTextChannel = Channels.newChannel(cipherTextStream);
+		final WritableByteChannel plainTextChannel = Channels.newChannel(plainTextStream);
+		final int bufferSize = 32*1024;
+		ByteBuffer cipherTextBuffer = ByteBuffer.allocateDirect((int)Math.min(bufferSize, flowFile.getSize() - AES_GCM_TAG_SIZE - 512 - 16 - 12));
+		ByteBuffer plainTextBuffer = ByteBuffer.allocateDirect(bufferSize + (fipsMode ? AES_GCM_TAG_SIZE : 0));
+		ByteBuffer discardBuffer = ByteBuffer.allocateDirect(bufferSize + (fipsMode ? AES_GCM_TAG_SIZE : 0));
+		long cipherTextPosition = 0;
+		int numBytesRead = 0;
+		long totalBytesRead = 0;
+		
+		while(cipherTextPosition &lt; flowFile.getSize())
+		{
+			CipherPair cipherPair = parseInitialValuesFromStreamAndSetUpCipher(cipherTextStream, additionalInfo, keysFolder.getValue(), fipsMode);
+			
+			if(!cipherPair) {
+				log.error("Failed to configure cipher.  Routing to failure.");
+				throw new IOException("Failed to configure cipher.  Routing to failure.");
+			}
+			
+			cipherTextPosition += 16 + 12 + 512; //uuid, IV, key material
+			CryptoCipher cipher = cipherPair.cipher;
+			CryptoCipher verifyCipher = cipherPair.verifyCipher;
+
+			while(totalBytesRead &lt; MAX_AESGCM_SIZE &amp;&amp; cipherTextPosition &lt; flowFile.getSize() - AES_GCM_TAG_SIZE)
+			{
+				numBytesRead = cipherTextChannel.read(cipherTextBuffer);
+				cipherTextBuffer.flip();
+				totalBytesRead += numBytesRead;
+				cipherTextPosition += numBytesRead;
+				cipher.update(cipherTextBuffer, plainTextBuffer);
+				plainTextBuffer.flip();
+				plainTextChannel.write(plainTextBuffer);
+				
+				//refeed plaintext into verify cipher to calculate gcm tag
+				plainTextBuffer.flip();
+				verifyCipher.update(plainTextBuffer, discardBuffer);
+				cipherTextBuffer.clear();
+				plainTextBuffer.clear();
+				discardBuffer.clear();
+				
+				//was the buffer size reset last pass?
+				if(cipherTextBuffer.capacity() &lt; bufferSize)
+					cipherTextBuffer = ByteBuffer.allocateDirect(bufferSize);
+				
+				//are we within one round of the end of MAX_AESGCM_SIZE?
+				if(totalBytesRead + cipherTextBuffer.capacity() &gt; MAX_AESGCM_SIZE)
+					cipherTextBuffer = ByteBuffer.allocateDirect((int)(MAX_AESGCM_SIZE - totalBytesRead));
+				
+				//are we within one round of the end of the file?
+				if(flowFile.getSize() - cipherTextPosition - AES_GCM_TAG_SIZE &lt; cipherTextBuffer.capacity())
+					cipherTextBuffer = ByteBuffer.allocateDirect((int)(flowFile.getSize() - cipherTextPosition - AES_GCM_TAG_SIZE));
+			}
+
+			totalBytesRead = 0;
+			
+			//do final to get anything back out of the cipher's internal buffer that is cached
+			cipher.doFinal(ByteBuffer.allocateDirect(0), plainTextBuffer);
+			cipher.close();
+			plainTextBuffer.flip();
+			plainTextBuffer.limit(plainTextBuffer.limit() - AES_GCM_TAG_SIZE);
+			plainTextChannel.write(plainTextBuffer);
+			plainTextBuffer.rewind();
+			verifyCipher.update(plainTextBuffer, discardBuffer);
+			plainTextBuffer.clear();
+			discardBuffer.clear();
+
+			//read gcm tag from cipher text file
+			cipherTextBuffer = ByteBuffer.allocateDirect(AES_GCM_TAG_SIZE);
+			cipherTextChannel.read(cipherTextBuffer);
+			cipherTextPosition += AES_GCM_TAG_SIZE;
+			cipherTextBuffer.flip();
+			
+			//calculate gcm tag in verify cipher
+			verifyCipher.doFinal(ByteBuffer.allocateDirect(0), plainTextBuffer);
+			verifyCipher.close();
+			cipher.close();
+			plainTextBuffer.limit(plainTextBuffer.position());
+			plainTextBuffer.position(plainTextBuffer.position() - AES_GCM_TAG_SIZE);
+			
+			//compare tags
+			if(cipherTextBuffer.compareTo(plainTextBuffer) == 0)
+				isValidDecrypt = true
+			else
+				throw new IllegalStateException('AES-GCM authentication tag did not pass validation.');
+		}
+	} as StreamCallback)
+
+	if(isValidDecrypt)
+	{
+		if(flowFile.filename.toLowerCase().endsWith('.enc'))
+			flowFile = session.putAttribute(flowFile, 'filename', flowFile.filename.substring(0, flowFile.filename.length() - 4));
+		session.transfer(flowFile, REL_SUCCESS);
+	}
+	else
+	{
+		throw new IllegalStateException('AES-GCM authentication tag did not pass validation.');
+	}
+}
+catch (Exception e)
+{
+	log.error("Exception in decrypt: " + e.getMessage());
+	session.transfer(flowFile, REL_FAILURE);
+}</value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-failure-strategy</key>
+                        <value>rollback</value>
+                    </entry>
+                    <entry>
+                        <key>groovyx-additional-classpath</key>
+                        <value>/var/libs/AESGCM/bcpkix-jdk15on-169.jar;/var/libs/AESGCM/bcprov-jdk15on-169.jar;/var/libs/AESGCM/commons-crypto-1.1.0.jar</value>
+                    </entry>
+                    <entry>
+                        <key>fips</key>
+                        <value>false</value>
+                    </entry>
+                    <entry>
+                        <key>keysFolder</key>
+                        <value>/var/data/keys/private</value>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <executionNodeRestricted>false</executionNodeRestricted>
+            <name>Decrypt</name>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>failure</name>
+            </relationships>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <name>success</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <type>org.apache.nifi.processors.groovyx.ExecuteGroovyScript</type>
+        </processors>
+    </snippet>
+    <timestamp>09/28/2021 11:43:14 UTC</timestamp>
+</template>
