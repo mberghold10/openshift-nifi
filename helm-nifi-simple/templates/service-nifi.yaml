@@ -10,6 +10,5 @@ spec:
   ports:
     - port: 9443
       name: http
-      targetPort: 9443
   selector:
     app: nifi
