@@ -76,7 +76,6 @@ spec:
                 gzip /opt/nifi/data/flow.xml
               fi
 
-              prop_replace nifi.remote.input.host ${FQDN}
               prop_replace nifi.web.http.host ${FQDN}
 
               # Update nifi.properties for security properties
