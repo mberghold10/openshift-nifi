@@ -92,7 +92,7 @@ spec:
               prop_replace nifi.security.truststorePasswd $(jq -r .trustStorePassword ${NIFI_HOME}/config-data/certs/config.json)
               prop_replace nifi.web.http.network.interface.default "eth0" nifi.properties
               prop_replace nifi.web.http.network.interface.lo "lo" nifi.properties
-              prop_replace nifi.web.proxy.host "anyhost"
+              prop_replace nifi.web.proxy.host "nifi-mberghold-dev.apps.sandbox-m3.1530.p1.openshiftapps.com"
 
               if [ -n "${NIFI_SENSITIVE_PROPS_KEY}" ]; then
                   prop_replace 'nifi.sensitive.props.key' "${NIFI_SENSITIVE_PROPS_KEY}"
