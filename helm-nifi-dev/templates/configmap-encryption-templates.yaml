@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: encryption-templates
+  labels:
+    app: "nifi"
+data:
+{{ (tpl (.Files.Glob "encryption/templates/*").AsConfig . ) | indent 2 }}

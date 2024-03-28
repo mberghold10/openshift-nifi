@@ -31,144 +31,6 @@ spec:
                         - "nifi"
                 topologyKey: "kubernetes.io/hostname"
       terminationGracePeriodSeconds: 30
-      initContainers:
-        - name: zookeeper
-          imagePullPolicy: "IfNotPresent"
-          image: "{{ .Values.images.busybox.repository }}:{{ .Values.images.busybox.tag }}"
-          command:
-            - sh
-            - -c
-            - |
-              echo trying to contact nifi-zookeeper 2181
-              until nc -vzw 1 nifi-zookeeper 2181; do
-                echo "waiting for zookeeper..."
-                sleep 2
-              done
-        - name: cert-request
-          imagePullPolicy: "IfNotPresent"
-          image: "{{ .Values.images.nifiToolkit.repository }}:{{ .Values.images.nifiToolkit.tag }}"
-          resources:
-            requests:
-              cpu: 1
-              memory: 512Mi
-            limits:
-              cpu: 1
-              memory: 512Mi
-          command:
-            - bash
-            - -c
-            - |
-              CA_ADDRESS="nifi-ca:9090"
-              until echo "" | timeout 2 openssl s_client -connect "${CA_ADDRESS}"; do
-                # Checking if ca server using nifi-toolkit is up
-                echo "Waiting for CA to be available at ${CA_ADDRESS}"
-                sleep 2
-              done;
-
-              cd /data/config-data
-              rm -rf certs
-              mkdir certs
-              cd certs
-
-              # Generate certificate for server with webProxyHost or service name as alternate names to access nifi web ui
-              cat <<EOF >>config.json
-              {
-                "dn" : "CN=$(hostname -f), OU=NIFI",
-                "keyStore" : "keystore.jks",
-                "keyStoreType" : "jks",
-                "keyStorePassword" : "{{ .Values.certificateStorePassword }}",
-                "keyPassword" : "{{ .Values.certificateStorePassword }}",
-                "token" : "sixteenCharacters",
-                "caHostname" : "nifi-ca",
-                "port" : 9090,
-                "dnPrefix" : "CN=",
-                "dnSuffix" : ", OU=NIFI",
-                "domainAlternativeNames" : [ "nifi.{{ .Values.namespace }}.svc" ],
-                "trustStore" : "truststore.jks",
-                "trustStorePassword" : "{{ .Values.certificateStorePassword }}",
-                "trustStoreType" : "jks"
-              }
-              EOF
-
-              ${NIFI_TOOLKIT_HOME}/bin/tls-toolkit.sh client --configJsonIn config.json
-
-              # Generate client certificate for browser with webProxyHost or service name as alternate names to access nifi web ui
-              mkdir -p /data/config-data/certs/admin
-              cd /data/config-data/certs/admin
-
-              cat <<EOF >>config.json
-              {
-                "dn" : "CN=admin, OU=NIFI",
-                "keyStore" : "keystore.pkcs12",
-                "keyStoreType" : "pkcs12",
-                "keyStorePassword" : "{{ .Values.certificateStorePassword }}",
-                "keyPassword" : "{{ .Values.certificateStorePassword }}",
-                "token" : "sixteenCharacters",
-                "caHostname" : "nifi-ca",
-                "port" : 9090,
-                "dnPrefix" : "CN=",
-                "dnSuffix" : ", OU=NIFI",
-                "domainAlternativeNames" : [ "nifi.{{ .Values.namespace }}.svc" ],
-                "trustStore" : "truststore.jks",
-                "trustStorePassword" : "{{ .Values.certificateStorePassword }}",
-                "trustStoreType" : "jks"
-              }
-              EOF
-
-              ${NIFI_TOOLKIT_HOME}/bin/tls-toolkit.sh client --configJsonIn config.json
-
-              export PASS=$(jq -r .keyStorePassword config.json)
-
-              openssl pkcs12 -in "keystore.pkcs12" -out "key.pem" -nocerts -nodes -password "env:PASS"
-              openssl pkcs12 -in "keystore.pkcs12" -out "crt.pem" -clcerts -nokeys -password "env:PASS"
-              openssl pkcs12 -in "keystore.pkcs12" -out "keystore.jks" -clcerts -nokeys -password "env:PASS"
-          volumeMounts:
-            - name: "config-data"
-              mountPath: /data/config-data
-        - name: reencrypt-route
-          image: "{{ .Values.images.ocClient.repository }}:{{ .Values.images.ocClient.tag }}"
-          imagePullPolicy: 'IfNotPresent'
-          env:
-            - name: SERVICE_NAME
-              value: nifi
-            - name: ROUTE_NAME
-              value: nifi
-            - name: ROUTE_NAMESPACE
-              value: {{ .Values.namespace }}
-            - name: CA_CERT_PATH
-              value: /data/config-data/certs/nifi-cert.pem
-          command:
-            - bash
-            - -c
-            - |
-              set -x
-              cat <<EOF > /tmp/nifi_route.yaml
-              apiVersion: route.openshift.io/v1
-              kind: Route
-              metadata:
-                name: ${ROUTE_NAME}
-              spec:
-                port:
-                  targetPort: https
-                tls:
-                  termination: Reencrypt
-                  insecureEdgeTerminationPolicy: Redirect
-                  destinationCACertificate: |-
-              $(sed 's/^/      /' ${CA_CERT_PATH})
-                to:
-                  kind: Service
-                  name: ${SERVICE_NAME}
-                  weight: 100
-                wildcardPolicy: None
-              EOF
-              oc apply -n ${ROUTE_NAMESPACE} -f /tmp/nifi_route.yaml
-              ROUTE_HOSTNAME=$(oc get route/${ROUTE_NAME} -n ${ROUTE_NAMESPACE} -o jsonpath="{.spec.host}")
-              echo ${ROUTE_HOSTNAME} > /opt/nifi/hostconf/hostname
-          volumeMounts:
-            - name: 'config-data'
-              mountPath: /data/config-data
-            - name: "hostconf"
-              mountPath: /opt/nifi/hostconf
       containers:
         - name: server
           imagePullPolicy: "Always"
@@ -230,7 +92,7 @@ spec:
               prop_replace nifi.security.truststorePasswd $(jq -r .trustStorePassword ${NIFI_HOME}/config-data/certs/config.json)
               prop_replace nifi.web.http.network.interface.default "eth0" nifi.properties
               prop_replace nifi.web.http.network.interface.lo "lo" nifi.properties
-              prop_replace nifi.web.proxy.host $(cat /opt/nifi/hostconf/hostname)
+              prop_replace nifi.web.proxy.host "anyhost"
 
               if [ -n "${NIFI_SENSITIVE_PROPS_KEY}" ]; then
                   prop_replace 'nifi.sensitive.props.key' "${NIFI_SENSITIVE_PROPS_KEY}"
@@ -299,13 +161,6 @@ spec:
               echo NiFi running with PID ${nifi_pid}.
               wait ${nifi_pid}
 
-              /opt/nifi/nifi-toolkit-current/bin/tls-toolkit.sh standalone \
-                -n '$(hostname -f)' \
-                -C '{{ .Values.adminIdentity }},OU=NIFI' \
-                -o '/opt/nifi/nifi-current/conf/' \
-                -P env:PASS  \
-                -S env:PASS  \
-                --nifiPropertiesFile /opt/nifi/nifi-current/conf/nifi.properties
               exec bin/nifi.sh run
           resources:
             limits:
@@ -340,12 +195,8 @@ spec:
             tcpSocket:
               port: 9443
           volumeMounts:
-            - name: "hostconf"
-              mountPath: /opt/nifi/hostconf
             - name: "data"
               mountPath: /opt/nifi/data
-            - name: "config-data"
-              mountPath: /opt/nifi/nifi-current/config-data
             - name: "logs"
               mountPath: /opt/nifi/nifi-current/logs
             - name: "bootstrap-conf"
@@ -472,18 +323,7 @@ spec:
             items:
               - key: "flow.xml"
                 path: "flow.xml"
-        - name: "hostconf"
-          emptyDir:
-            medium: Memory
   volumeClaimTemplates:
-    - metadata:
-        name: "config-data"
-      spec:
-        accessModes: ["ReadWriteOnce"]
-        storageClassName: {{ .Values.storageClass }}
-        resources:
-          requests:
-            storage: 100Mi
     - metadata:
         name: data
       spec:
