@@ -16,4 +16,4 @@ spec:
   host: nifi-mberghold-dev.apps.sandbox-m3.1530.p1.openshiftapps.com
   path: /nifi
   port:
-    targetPort: https
+    targetPort: http
