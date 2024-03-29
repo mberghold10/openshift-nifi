@@ -3,7 +3,7 @@
     <provider>
         <identifier>single-user-provider</identifier>
         <class>org.apache.nifi.authentication.single.user.SingleUserLoginIdentityProvider</class>
-        <property name="Username">admin</property>
-        <property name="Password">1tacsat21tacsat2</property>
+        <property name="Username"/>
+        <property name="Password"/>
     </provider>
 </loginIdentityProviders>

@@ -1,19 +1,33 @@
 ---
-kind: Route
-apiVersion: route.openshift.io/v1
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
 metadata:
-  name: nifi
-  namespace: mberghold-dev
-  labels:
-    app: nifi
-    component.opendatahub.io/name: nifi
-    opendatahub.io/component: 'true'
-spec:
-  to:
-    kind: Service
-    name: nifi
-  tls: null
-  host: nifi-mberghold-dev.apps.sandbox-m3.1530.p1.openshiftapps.com
-  path: /nifi
-  port:
-    targetPort: http
+  name: route-create-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: route-create-role
+subjects:
+  - kind: ServiceAccount
+    name: nifi-sa
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: route-create-role
+rules:
+  - verbs:
+      - get
+      - create
+    apiGroups:
+      - ''
+      - route.openshift.io
+    resources:
+      - routes
+  - verbs:
+      - create
+    apiGroups:
+      - ''
+      - route.openshift.io
+    resources:
+      - routes/custom-host
