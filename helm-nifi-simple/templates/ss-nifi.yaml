@@ -128,7 +128,7 @@ spec:
               echo "END ROUTE:::"
               echo nifi-mberghold-dev.apps.sandbox-m3.1530.p1.openshiftapps.com > /opt/nifi/hostconf/hostname
 
-
+              cd
               set -x
               scripts_dir='/opt/nifi/scripts'
 
