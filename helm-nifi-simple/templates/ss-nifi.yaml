@@ -46,7 +46,7 @@ spec:
                 sleep 2
               done;
 
-              cd /data/config-data
+              cd /opt/nifi/nifi-current/config-data
               rm -rf certs
               mkdir certs
               cd certs
@@ -74,8 +74,8 @@ spec:
               ${NIFI_TOOLKIT_HOME}/bin/tls-toolkit.sh client --configJsonIn config.json
 
               # Generate client certificate for browser with webProxyHost or service name as alternate names to access nifi web ui
-              mkdir -p /data/config-data/certs/admin
-              cd /data/config-data/certs/admin
+              mkdir -p /opt/nifi/nifi-current/config-data/certs/admin
+              cd /opt/nifi/nifi-current/config-data/certs/admin
 
               cat <<EOF >>config.json
               {
